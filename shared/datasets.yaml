@@ -25,7 +25,9 @@
 
 telco_churn:
   file: telco_churn.parquet
-  url: null            # committed to shared/data_cache — built by tools/make_datasets.py
+  url: https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/data_cache/telco_churn.parquet
+  # Committed to shared/data_cache, so a clone never downloads it. The URL is for
+  # Colab, which has no checkout and would otherwise reach the upload prompt.
   sha256: "54a20b92afcd4bd13fee03bd9a481b681323025007600a8aacf682b1c12263e9"
   size_mb: 0.2
   licence: "CC0 (public domain)"
@@ -46,7 +48,9 @@ telco_churn:
 
 housing_prices:
   file: housing_prices.parquet
-  url: null            # committed to shared/data_cache — small enough not to need a Release
+  url: https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/data_cache/housing_prices.parquet
+  # Committed to shared/data_cache, so a clone never downloads it. The URL is for
+  # Colab, which has no checkout and would otherwise reach the upload prompt.
   sha256: "2ed310bc105a86916266cfa09ca133e862342cd6bf497d73e05ea0d9809149a4"
   size_mb: 0.81
   licence: "Public domain (StatLib, 1990 US Census derived)"
@@ -67,7 +71,9 @@ housing_prices:
 
 credit_default:
   file: credit_default.parquet
-  url: null            # committed to shared/data_cache — built by tools/make_datasets.py
+  url: https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/data_cache/credit_default.parquet
+  # Committed to shared/data_cache, so a clone never downloads it. The URL is for
+  # Colab, which has no checkout and would otherwise reach the upload prompt.
   sha256: "111a6532f406aae8210cfd61bd49ca165ff0a1d346d0fe27e8f95ec269fb7d54"
   size_mb: 1.75
   licence: "CC BY 4.0"
@@ -88,7 +94,9 @@ credit_default:
 
 customer_segments:
   file: customer_segments.parquet
-  url: null            # committed to shared/data_cache — built by tools/make_datasets.py
+  url: https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/data_cache/customer_segments.parquet
+  # Committed to shared/data_cache, so a clone never downloads it. The URL is for
+  # Colab, which has no checkout and would otherwise reach the upload prompt.
   sha256: "c097245b06d3266f9f25475fed02a3882d5b5874e3d3c6121bed12dea488dea9"
   size_mb: 0.17
   licence: "CC0"
