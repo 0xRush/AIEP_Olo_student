@@ -52,7 +52,7 @@ Labs, datasets, and the capstone brief for the 8-week AI Engineering Bootcamp.
 ## Every day
 
 ```bash
-git pull upstream main      # morning: today's lab, and yesterday's solution
+git pull upstream master    # morning: today's lab, and yesterday's solution
 # … work …
 git add . && git commit -m "W3D2 lab" && git push
 ```
@@ -64,7 +64,7 @@ on — and it is what you show an employer.
 
 ## كل يوم
 
-اسحب التحديثات صباحًا بأمر `git pull upstream main` لتحصل على معمل اليوم وحلّ الأمس، ثم اعمل،
+اسحب التحديثات صباحًا بأمر `git pull upstream master` لتحصل على معمل اليوم وحلّ الأمس، ثم اعمل،
 ثم ارفع عملك مساءً بـ `git add` و`git commit` و`git push`.
 
 التزم بالرفع يوميًا؛ فسجلّ التزاماتك عبر ثمانية أسابيع جزء من تقييم مشروع التخرّج، وهو ما تعرضه
@@ -128,7 +128,7 @@ of that fails, it asks you to upload the file and tells you exactly which one.
 Open any notebook at:
 
 ```
-https://colab.research.google.com/github/0xRush/AIEP_Olo_student/blob/main/<path-to-notebook>
+https://colab.research.google.com/github/0xRush/AIEP_Olo_student/blob/master/<path-to-notebook>
 ```
 
 The setup cell installs everything the lab needs. Colab does **not** save back to GitHub

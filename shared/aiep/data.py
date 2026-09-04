@@ -34,7 +34,7 @@ _REGISTRY_CACHE: dict[str, Any] | None = None
 # Where the registry is published for Colab, which has no repo checkout to read it from.
 _REGISTRY_URL = os.environ.get(
     "AIEP_REGISTRY_URL",
-    "https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/main/shared/datasets.yaml",
+    "https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/datasets.yaml",
 )
 
 
