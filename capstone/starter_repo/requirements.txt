@@ -1,0 +1,17 @@
+# Keep this honest — it must reflect what you actually import.
+# Check with:  uv pip freeze | grep -i <package>
+#
+# This is YOUR project's dependency file, so a plain requirements.txt is right here —
+# the course repo uses requirements.in + requirements.lock because it has 8 weeks of
+# stack to pin. Install it with `uv pip install -r requirements.txt`.
+pandas>=2.2
+numpy>=1.26,<2.1
+scikit-learn>=1.5
+joblib>=1.4
+matplotlib>=3.9
+fastapi>=0.112
+uvicorn>=0.30
+pydantic>=2.8
+streamlit>=1.37
+python-dotenv>=1.0
+pytest>=8.2

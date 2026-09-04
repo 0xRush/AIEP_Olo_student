@@ -1,0 +1,15 @@
+# Optional extras. NOT installed by `make setup` and NOT part of requirements.lock.
+#
+#   uv pip install -r requirements-optional.in
+#
+# ─── LICENCE WARNING ─────────────────────────────────────────────────────────
+# ultralytics is AGPL-3.0. That is fine for classroom use, and it is NOT fine to
+# vendor into a closed-source product. It is deliberately quarantined here so that
+# nobody pulls it into a capstone or a work project by accident.
+#
+# The W4D3 detection lab's warm-up and core sections use `hustvl/yolos-tiny` through
+# `transformers` (Apache-2.0), which is already in requirements.in. ultralytics is
+# needed only for that lab's STRETCH section — fine-tuning a detector head — and the
+# notebook says so at the top of the section.
+
+ultralytics>=8.2

@@ -1,0 +1,424 @@
+# Dataset registry for the AIEP bootcamp.
+#
+# Every dataset a lab uses is declared here BEFORE the lab is written.
+# Notebooks call get_dataset("<key>") and never contain a file path.
+# Full field reference: docs/Data_Guide.md
+#
+# ─── Status ──────────────────────────────────────────────────────────────────
+# Entries below are the planned datasets per the curriculum. Before a cohort runs:
+#   1. Source each file, check its licence, sample it down if needed.
+#   2. Put it in shared/data_cache (< 5 MB) or upload it as a Release asset (>= 5 MB).
+#   3. Run:  python tools/fetch_datasets.py --update-hashes
+#      which fills in every `sha256: null` and `size_mb: null` from the actual files.
+#   4. Commit the updated registry.
+# `sha256: null` means "not yet pinned" — get_dataset still works, it just can't verify.
+#
+# `loader:` values:
+#   (absent)     — a file we host; fetched from `url` into the cache
+#   torchvision  — loaded by torchvision.datasets; entry exists only to document it
+#   huggingface  — loaded by `datasets`/`transformers`; documentation only
+#   manual       — licence forbids redistribution; the student downloads it themselves
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Weeks 1-3 — tabular
+# ═══════════════════════════════════════════════════════════════════════════════
+
+telco_churn:
+  file: telco_churn.parquet
+  url: null            # committed to shared/data_cache — built by tools/make_datasets.py
+  sha256: "54a20b92afcd4bd13fee03bd9a481b681323025007600a8aacf682b1c12263e9"
+  size_mb: 0.2
+  licence: "CC0 (public domain)"
+  source: "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
+  rows: 7043
+  target: Churn
+  used_by: ["W1D3", "W2D1", "W2D2", "W2D5", "W8D1"]
+  description_en: >
+    Telecom customer records with a churn label. Mixed numeric and categorical columns,
+    a genuinely imbalanced target (~27% churn), and enough messiness to carry the whole
+    of weeks 1-3 without students restarting on a new dataset every day.
+  description_ar: >
+    سجلات عملاء اتصالات مع عمود يوضّح مغادرة العميل للخدمة. أعمدة رقمية وفئوية مختلطة،
+    وهدف غير متوازن فعليًا (نحو ٢٧٪)، وفيها من الفوضى ما يكفي لتغطية الأسابيع الثلاثة
+    الأولى دون أن يبدأ الطلاب من مجموعة بيانات جديدة كل يوم.
+  gotcha_en: "TotalCharges is stored as text and is blank for customers with tenure = 0."
+  gotcha_ar: "عمود TotalCharges مخزّن كنص ويكون فارغًا للعملاء الذين مدّة اشتراكهم صفر."
+
+housing_prices:
+  file: housing_prices.parquet
+  url: null            # committed to shared/data_cache — small enough not to need a Release
+  sha256: "2ed310bc105a86916266cfa09ca133e862342cd6bf497d73e05ea0d9809149a4"
+  size_mb: 0.81
+  licence: "Public domain (StatLib, 1990 US Census derived)"
+  source: "California Housing via sklearn.datasets.fetch_california_housing"
+  rows: 20640
+  target: median_house_value
+  used_by: ["W1D1", "W1D2"]
+  description_en: >
+    Housing blocks with median price as the target. The regression counterpart to
+    telco_churn: used for the first end-to-end model (W1D1) and for gradient descent
+    from scratch (W1D2), where a single feature keeps the arithmetic visible.
+  description_ar: >
+    بيانات أحياء سكنية مع متوسط السعر كهدف. النظير الانحداري لمجموعة telco_churn،
+    وتُستخدم في أول نموذج متكامل (الأسبوع ١ اليوم ١) وفي طريقة النزول التدريجي من الصفر
+    (الأسبوع ١ اليوم ٢) حيث تُبقي خاصية واحدة الحساب مرئيًا.
+  gotcha_en: "The target is capped at 500001 — a wall of points at the maximum that quietly breaks the fit."
+  gotcha_ar: "الهدف مقصوص عند القيمة ٥٠٠٠٠١، فتتكدّس نقاط كثيرة عند الحد الأقصى وتُفسد المطابقة بصمت."
+
+credit_default:
+  file: credit_default.parquet
+  url: null            # committed to shared/data_cache — built by tools/make_datasets.py
+  sha256: "111a6532f406aae8210cfd61bd49ca165ff0a1d346d0fe27e8f95ec269fb7d54"
+  size_mb: 1.75
+  licence: "CC BY 4.0"
+  source: "UCI Default of Credit Card Clients"
+  rows: 30000
+  target: default_next_month
+  used_by: ["W1D4", "W3D1", "W3D5"]
+  description_en: >
+    Credit-card clients with a default flag. Used for evaluation under class imbalance
+    (W1D4) and for trees and ensembles (W3D1), where feature importance has a meaning
+    students can argue about.
+  description_ar: >
+    عملاء بطاقات ائتمانية مع مؤشّر التعثّر. تُستخدم في التقييم مع اختلال توازن الفئات
+    (الأسبوع ١ اليوم ٤) وفي النماذج الشجرية (الأسبوع ٣ اليوم ١) حيث تحمل أهمية الخصائص
+    معنى يستحق النقاش.
+  gotcha_en: "PAY_0..PAY_6 use an undocumented coding where -2, -1 and 0 all mean 'not late'."
+  gotcha_ar: "الأعمدة PAY_0 إلى PAY_6 تستخدم ترميزًا غير موثّق تعني فيه القيم -2 و-1 و0 جميعها «غير متأخّر»."
+
+customer_segments:
+  file: customer_segments.parquet
+  url: null            # committed to shared/data_cache — built by tools/make_datasets.py
+  sha256: "c097245b06d3266f9f25475fed02a3882d5b5874e3d3c6121bed12dea488dea9"
+  size_mb: 0.17
+  licence: "CC0"
+  source: "Retail transactions aggregated to customer level (classroom fixture)"
+  rows: 4372
+  target: null
+  used_by: ["W1D5"]
+  description_en: >
+    Customer-level spending features with no label — clustering has to justify itself
+    without an accuracy score, which is the actual lesson of the day.
+  description_ar: >
+    خصائص إنفاق على مستوى العميل بلا تسمية — على التجميع أن يبرّر نفسه دون مقياس دقة،
+    وهذا هو الدرس الحقيقي لليوم.
+  gotcha_en: "Spend columns are heavily right-skewed; K-Means on raw values finds one giant cluster and a few outliers."
+  gotcha_ar: "أعمدة الإنفاق ملتوية بشدة نحو اليمين؛ وتطبيق K-Means على القيم الخام ينتج عنقودًا ضخمًا وبضع قيم شاذّة."
+
+messy_sales:
+  file: messy_sales.csv
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/messy_sales.csv
+  sha256: null
+  size_mb: null
+  licence: "CC0 (classroom fixture, generated)"
+  source: "Built for this course"
+  rows: 5000
+  target: revenue
+  used_by: ["W2D3", "W2D4"]
+  description_en: >
+    Deliberately broken data: missing values in three different patterns, dates in four
+    formats, duplicated rows, inconsistent category spellings, and one column that leaks
+    the target. Built so every cleaning technique in week 3 has something real to fix.
+  description_ar: >
+    بيانات معطوبة عمدًا: قيم مفقودة بثلاثة أنماط مختلفة، وتواريخ بأربع صيغ، وصفوف مكرّرة،
+    وتهجئات غير متّسقة للفئات، وعمود واحد يُسرّب الهدف. صُمّمت ليجد كل أسلوب تنظيف في
+    الأسبوع الثالث شيئًا حقيقيًا يصلحه.
+  gotcha_en: "The whole file is the gotcha. `unit_price * quantity` reproduces `revenue` exactly — that column must go."
+  gotcha_ar: "الملف كله مشكلة. حاصل `unit_price * quantity` يساوي `revenue` تمامًا، فيجب حذف ذلك العمود."
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Weeks 3-6 — neural networks, vision and representations
+# ═══════════════════════════════════════════════════════════════════════════════
+
+moons_toy:
+  file: moons_toy.parquet
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/moons_toy.parquet
+  sha256: null
+  size_mb: null
+  licence: "CC0 (generated with sklearn.datasets.make_moons, seed 42)"
+  source: "Built for this course"
+  rows: 500
+  target: label
+  used_by: ["W3D2", "W3D3", "W3D4", "W3D5"]
+  description_en: >
+    Two interleaving half-moons — not linearly separable, small enough to train a
+    from-scratch NumPy network on in seconds, and 2-D so the decision boundary can be
+    drawn. Used across all of week 4 so students compare like with like.
+  description_ar: >
+    هلالان متداخلان — غير قابلين للفصل خطيًا، وصغيران بما يكفي لتدريب شبكة مكتوبة من
+    الصفر بـ NumPy في ثوانٍ، وثنائيا البعد فيمكن رسم حدّ القرار. يُستخدمان طوال الأسبوع
+    الرابع ليقارن الطلاب المتشابه بالمتشابه.
+  gotcha_en: "Noise is set to 0.2, so perfect accuracy is impossible — a student chasing 100% is overfitting."
+  gotcha_ar: "الضوضاء مضبوطة على ٠٫٢، فالدقة الكاملة مستحيلة؛ ومن يطارد ١٠٠٪ فهو يقع في فرط المطابقة."
+
+mnist:
+  loader: torchvision
+  file: null
+  sha256: null
+  size_mb: 11
+  licence: "CC BY-SA 3.0"
+  source: "http://yann.lecun.com/exdb/mnist/"
+  rows: 70000
+  target: digit
+  used_by: ["W4D2"]
+  description_en: >
+    28x28 greyscale handwritten digits. Downloaded and cached by torchvision on first
+    use; do not call get_dataset for this one.
+  description_ar: >
+    أرقام مكتوبة بخط اليد بحجم ٢٨×٢٨ بتدرّج رمادي. يُنزّلها torchvision ويخزّنها عند أول
+    استخدام؛ ولا تُستدعى عبر get_dataset.
+  gotcha_en: "MNIST is unrealistically easy. A near-perfect score here says nothing about real vision work — say so."
+  gotcha_ar: "MNIST سهلة على نحو غير واقعي، والنتيجة شبه الكاملة فيها لا تدلّ على شيء في الرؤية الحاسوبية الحقيقية — صرّح بذلك."
+
+fashion_mnist:
+  loader: torchvision
+  file: null
+  sha256: null
+  size_mb: 30
+  licence: "MIT"
+  source: "https://github.com/zalandoresearch/fashion-mnist"
+  rows: 70000
+  target: garment_class
+  used_by: ["W4D2"]
+  description_en: >
+    Same shape as MNIST, genuinely harder. Used as the "now try it on something real"
+    step after the MNIST CNN, and for filter visualisation.
+  description_ar: >
+    بالحجم نفسه لـ MNIST لكنها أصعب فعليًا. تُستخدم كخطوة «جرّبها الآن على شيء حقيقي»
+    بعد شبكة MNIST، وفي تصوّر المُرشِّحات.
+  gotcha_en: "Shirt vs coat vs pullover are confusable at 28x28 even for humans — the confusion matrix shows it."
+  gotcha_ar: "التمييز بين القميص والمعطف والكنزة صعب عند دقة ٢٨×٢٨ حتى على الإنسان، وتُظهر مصفوفة الالتباس ذلك."
+
+sample_photos:
+  file: sample_photos.zip
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/sample_photos.zip
+  sha256: null
+  size_mb: null
+  licence: "CC0 (Unsplash / Pexels public domain selection)"
+  source: "Curated for this course"
+  rows: 20
+  target: null
+  used_by: ["W4D1", "W4D3", "W6D1"]
+  description_en: >
+    Twenty photographs, used three times: hand-written convolution (W4D1), the object
+    detection lab (W4D3), and ViT attention maps (W6D1). Street scenes with several
+    detectable objects, plus two deliberately hard cases where detection fails. The
+    reuse is the point — by W4D3 students already know these images.
+  description_ar: >
+    عشرون صورة تُستخدم ثلاث مرات: تطبيق الالتفاف يدويًا (الأسبوع ٤ اليوم ١)، ومعمل كشف
+    الكائنات (اليوم الثالث)، وخرائط انتباه محوّل الرؤية (الأسبوع ٦ اليوم ١). مشاهد شوارع
+    بعدة كائنات، وحالتان صعبتان عمدًا يفشل فيهما الكشف. وإعادة الاستخدام مقصودة: فالطالب
+    يعرف هذه الصور قبل أن يصل إلى معمل الكشف.
+  gotcha_en: "Two images are intentionally hard (heavy occlusion, unusual angle). The failure is the lesson."
+  gotcha_ar: "صورتان صعبتان عمدًا (حجب شديد وزاوية غير معتادة). الفشل نفسه هو الدرس."
+
+detection_boxes:
+  file: detection_boxes.zip
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/detection_boxes.zip
+  sha256: null
+  size_mb: null
+  licence: "CC0 for the annotations; images CC0 (Unsplash / Pexels public domain selection)"
+  source: "Hand-annotated for this course, YOLO-format labels"
+  rows: 120
+  target: bbox
+  used_by: ["W4D3"]
+  description_en: >
+    Ground-truth bounding boxes in YOLO format for three classes (person, car, traffic
+    sign). Covers the twenty images of `sample_photos` plus ~100 further boxed street
+    scenes for the fine-tune stretch section. Without these labels the detection lab can
+    only LOOK at predictions; with them it can score IoU matches, precision, recall and
+    mAP@0.5 — which is the whole difference between a demonstration and an evaluation.
+  description_ar: >
+    صناديق مرجعية بصيغة YOLO لثلاث فئات (شخص، سيارة، لوحة مرورية). تُغطّي العشرين صورة في
+    `sample_photos` ونحو مئة مشهد شارع إضافي مُعلَّم للقسم الإضافي الخاص بالضبط الدقيق. وبلا
+    هذه التسميات يستطيع معمل الكشف أن **ينظر** إلى التنبؤات فقط؛ ومعها يستطيع حساب التطابق
+    بمقياس IoU والدقة والاستدعاء وmAP — وهذا هو الفرق كله بين العرض والتقييم.
+  gotcha_en: "Boxes are (x1, y1, x2, y2) in PIXEL coordinates, not normalised. yolos-tiny returns normalised cxcywh — convert before computing IoU, or every number is silently wrong."
+  gotcha_ar: "الصناديق بصيغة (x1, y1, x2, y2) بإحداثيات البكسل لا مُطبَّعة، بينما يُرجع yolos-tiny صيغة cxcywh مُطبَّعة — حوّلها قبل حساب IoU وإلا صارت كل الأرقام خاطئة بصمت."
+
+small_image_5class:
+  file: small_image_5class.zip
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/small_image_5class.zip
+  sha256: null
+  size_mb: null
+  licence: "CC BY 2.0"
+  source: "Sampled from a public image dataset, 60-100 images per class"
+  rows: 400
+  target: class
+  used_by: ["W4D4", "W4D5", "W6D1", "W6D2", "W6D3", "W6D4", "W6D5"]
+  description_en: >
+    Five classes, ~80 images each — small on purpose. It carries W4D4-D5 (augmentation,
+    then fine-tuning) and the whole of week 6 (autoencoder, MAE, linear probe, CLIP).
+    Too small to train from scratch, which is exactly what makes augmentation and
+    transfer learning visible. Keeping the same 400 images across both weeks is what
+    makes W6D4's linear probe directly comparable with W4D5's supervised fine-tune —
+    that comparison is the point of week 6, and swapping the dataset destroys it.
+  description_ar: >
+    خمس فئات، نحو ٨٠ صورة لكل فئة — صغيرة عمدًا. تحمل اليومين الرابع والخامس من الأسبوع
+    الرابع (زيادة البيانات ثم الضبط الدقيق) والأسبوع السادس كاملًا. أصغر من أن تُدرَّب من
+    الصفر، وهذا بالضبط ما يجعل أثر زيادة البيانات والتعلّم بالنقل مرئيًا. وبقاء الصور
+    الأربعمئة نفسها في الأسبوعين هو ما يجعل الفحص الخطي في الأسبوع السادس قابلًا للمقارنة
+    مباشرةً بالضبط المُشرَف في الأسبوع الرابع — وتلك المقارنة هي جوهر الأسبوع السادس.
+  gotcha_en: "Class 3 has 12 near-duplicate images. If they straddle the train/test split, accuracy is inflated."
+  gotcha_ar: "الفئة الثالثة تحوي ١٢ صورة شبه مكرّرة؛ وإذا توزّعت بين التدريب والاختبار ارتفعت الدقة زورًا."
+
+image_captions_small:
+  file: image_captions_small.zip
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/image_captions_small.zip
+  sha256: null
+  size_mb: null
+  licence: "CC BY 2.0 (images); captions written for this course, CC0"
+  source: "Curated image-caption pairs, one short caption per image"
+  rows: 200
+  target: null
+  used_by: ["W6D5"]
+  description_en: >
+    Two hundred image-caption pairs for the CLIP cross-modal retrieval lab. Each image
+    has exactly one known-correct caption, which is what makes Recall@1, Recall@5 and MRR
+    computable in both directions — text-to-image and image-to-text are not equally good,
+    and measuring that gap is the lab's finding. Includes a handful of pairs designed to
+    fail: counting ("three cars"), spatial relations ("under the table"), text inside the
+    image, and one Arabic-language caption.
+  description_ar: >
+    مئتا زوج من صورة وتعليق لمعمل الاسترجاع متعدّد الوسائط بـ CLIP. لكل صورة تعليق واحد
+    صحيح معروف، وهذا ما يجعل مقاييس الاستدعاء والرتبة المتبادلة قابلة للحساب في الاتجاهين —
+    فالبحث من النص إلى الصورة ليس بجودة العكس، وقياس هذه الفجوة هو نتيجة المعمل. وتشمل
+    أزواجًا مصمّمة للفشل: العدّ («ثلاث سيارات»)، والعلاقات المكانية («تحت الطاولة»)، والنص
+    داخل الصورة، وتعليقًا واحدًا بالعربية.
+  gotcha_en: "The Arabic caption performs far worse than its English equivalent. That is the finding, not a broken file — web-scraped training data under-represents Arabic and the lab is meant to surface it."
+  gotcha_ar: "التعليق العربي أداؤه أسوأ بكثير من مقابله الإنجليزي، وهذه هي النتيجة لا خلل في الملف: بيانات التدريب المسحوبة من الشبكة تُمثّل العربية تمثيلًا ناقصًا، والمعمل موجود ليُظهر ذلك."
+
+unseen_images:
+  file: unseen_images.zip
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/unseen_images.zip
+  sha256: null
+  size_mb: null
+  licence: "CC BY 2.0"
+  source: "Held out from the same source as small_image_5class"
+  rows: 25
+  target: class
+  used_by: ["W4D5", "W6D4", "W8D1"]
+  description_en: >
+    Twenty-five images the model has never seen, in the same five classes. Used as the
+    honest final check in W6D1 and W6D4, and as what the saved artifact loads and
+    predicts on in W8D1 — the capstone's requirement 4 in miniature.
+  description_ar: >
+    خمس وعشرون صورة لم يرها النموذج قط، من الفئات الخمس نفسها. تُستخدم كتحقّق نهائي صادق
+    في الأسبوع السادس، وهي ما يُحمّله الأثر المحفوظ ويتنبّأ به في الأسبوع الثامن اليوم
+    الأول — أي المتطلّب الرابع لمشروع التخرّج مصغَّرًا.
+  gotcha_en: "Three images are of classes the model was never trained on. A good service says 'low confidence', not a wrong label."
+  gotcha_ar: "ثلاث صور من فئات لم يُدرَّب عليها النموذج. والخدمة الجيّدة تقول «ثقة منخفضة» ولا تعطي تسمية خاطئة."
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Weeks 5-7 — NLP, RAG, recommenders
+# ═══════════════════════════════════════════════════════════════════════════════
+
+reviews_sentiment:
+  file: reviews_sentiment.parquet
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/reviews_sentiment.parquet
+  sha256: null
+  size_mb: null
+  licence: "CC BY-SA 4.0"
+  source: "Public product-review corpus, sampled and balanced"
+  rows: 12000
+  target: sentiment
+  used_by: ["W5D1", "W5D2", "W5D4", "W5D5"]
+  description_en: >
+    Product reviews with a sentiment label. Used for the TF-IDF baseline (W5D1), the
+    embedding comparison (W5D2) and the BERT fine-tune (W5D5), so every approach is
+    measured on identical data — which is the entire point of assignment A5.
+  description_ar: >
+    مراجعات منتجات مع تسمية للمشاعر. تُستخدم لخط الأساس بـ TF-IDF (الأسبوع ٥ اليوم ١)
+    وللمقارنة بالتمثيلات (اليوم الثاني) ولضبط BERT (اليوم الخامس)، فتُقاس كل الطرائق على
+    البيانات نفسها — وهذا هو جوهر التكليف الخامس.
+  gotcha_en: "About 4% of reviews are in a different language from the rest. TF-IDF ignores them; BERT partly doesn't."
+  gotcha_ar: "نحو ٤٪ من المراجعات بلغة مختلفة عن البقية. يتجاهلها TF-IDF، بينما لا يتجاهلها BERT كليًا."
+
+sentence_embeddings_sample:
+  file: sentence_embeddings_sample.parquet
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/sentence_embeddings_sample.parquet
+  sha256: null
+  size_mb: null
+  licence: "Apache 2.0 (all-MiniLM-L6-v2); the token list is CC0"
+  source: "Precomputed with sentence-transformers all-MiniLM-L6-v2 for this course"
+  rows: 50000
+  target: null
+  used_by: ["W5D2"]
+  description_en: >
+    Precomputed 384-dimensional sentence-transformer embeddings over a 50,000-token
+    vocabulary, so the W5D2 similarity and nearest-neighbour work loads in seconds on
+    classroom Wi-Fi instead of embedding a corpus live. This entry REPLACED the previous
+    GloVe file: the revised programme document removed Word2Vec, GloVe and FastText, so
+    embeddings are taught with the model students would actually reach for today. The
+    concepts the lab teaches — embedding space, cosine similarity, nearest neighbours —
+    are unchanged.
+  description_ar: >
+    تمثيلات متّجهية مُحسَّبة مسبقًا بـ ٣٨٤ بُعدًا لمعجم من ٥٠٠٠٠ رمز، ليُحمّل معمل التشابه
+    والجيران الأقرب في ثوانٍ على شبكة القاعة بدل حساب التمثيلات مباشرةً. هذا المدخل
+    **بديل** لملف GloVe السابق: فقد حذفت الوثيقة المُعدَّلة Word2Vec وGloVe وFastText،
+    فصارت التمثيلات تُدرَّس بالنموذج الذي يستخدمه الطالب فعلًا اليوم. والمفاهيم التي
+    يُعلّمها المعمل — فضاء التمثيل وجيب التمام والجيران الأقرب — لم تتغيّر.
+  gotcha_en: "These vectors carry the biases of their training corpus, exactly as GloVe did. W5D2 task 5 measures one — discuss it, don't skip it."
+  gotcha_ar: "تحمل هذه المتّجهات تحيّزات مُدوّنتها التدريبية كما كانت GloVe، ويقيس المعمل أحدها — ناقشه ولا تتجاوزه."
+
+policy_docs:
+  file: policy_docs.zip
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/policy_docs.zip
+  sha256: null
+  size_mb: null
+  licence: "CC0 (classroom fixture)"
+  source: "Written for this course"
+  rows: 24
+  target: null
+  used_by: ["W7D1", "W7D2", "W7D3", "W7D4", "W7D5"]
+  description_en: >
+    Twenty-four short policy documents for a fictional company. Nothing in them exists in
+    any model's training data, so an ungrounded LLM must hallucinate — which is how W7D3
+    proves why RAG is needed. Ships with a question set whose answers are all in the docs,
+    plus deliberately out-of-scope questions the system must refuse.
+  description_ar: >
+    أربع وعشرون وثيقة سياسات قصيرة لشركة متخيَّلة. لا يوجد شيء منها في بيانات تدريب أي
+    نموذج، فيضطر النموذج غير المُسنَد إلى الهلوسة — وبهذا يُثبت الأسبوع ٧ اليوم ٣ الحاجة
+    إلى RAG. ومعها مجموعة أسئلة إجاباتها كلها في الوثائق، وأسئلة خارج النطاق عمدًا يجب
+    أن يرفضها النظام.
+  gotcha_en: "Two documents contradict each other on one policy. A good RAG answer cites both; a bad one picks whichever chunk ranked first."
+  gotcha_ar: "وثيقتان تتناقضان في سياسة واحدة. الإجابة الجيّدة تستشهد بكلتيهما، والسيئة تأخذ المقطع الأعلى ترتيبًا فقط."
+
+rag_eval_questions:
+  file: rag_eval_questions.parquet
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/rag_eval_questions.parquet
+  sha256: null
+  size_mb: null
+  licence: "CC0 (classroom fixture)"
+  source: "Written for this course"
+  rows: 40
+  target: null
+  used_by: ["W7D1", "W7D3", "W7D4"]
+  description_en: >
+    Forty evaluation questions over policy_docs, each with the ground-truth answer and
+    the source document. Thirty are answerable; ten are deliberately out of scope, so
+    faithfulness and refusal can both be measured.
+  description_ar: >
+    أربعون سؤال تقييم على وثائق السياسات، مع الإجابة المرجعية والوثيقة المصدر لكل سؤال.
+    ثلاثون منها قابلة للإجابة وعشرة خارج النطاق عمدًا، فيمكن قياس الأمانة للمصدر والرفض معًا.
+  gotcha_en: "A system that answers all 40 scores worse than one that refuses the 10 — refusing correctly is the skill."
+  gotcha_ar: "النظام الذي يجيب عن الأربعين جميعًا أسوأ من الذي يرفض العشرة — والرفض في موضعه هو المهارة."
+
+movies_ratings:
+  file: movies_ratings.parquet
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/movies_ratings.parquet
+  sha256: null
+  size_mb: null
+  licence: "MovieLens terms — research/teaching use permitted"
+  source: "https://grouplens.org/datasets/movielens/ (ml-latest-small)"
+  rows: 100836
+  target: rating
+  used_by: ["W7D5"]
+  description_en: >
+    User-movie ratings plus title and genre metadata, so both collaborative and
+    content-based filtering can be built on the same data and compared directly.
+  description_ar: >
+    تقييمات المستخدمين للأفلام مع بيانات العنوان والنوع، فيمكن بناء الترشيح التعاوني
+    والترشيح القائم على المحتوى على البيانات نفسها ومقارنتهما مباشرة.
+  gotcha_en: "The rating matrix is ~98% empty. Any evaluation that treats missing as 'disliked' is measuring nothing."
+  gotcha_ar: "مصفوفة التقييمات فارغة بنسبة ٩٨٪ تقريبًا، وأي تقييم يعتبر المفقود «غير معجب» لا يقيس شيئًا."

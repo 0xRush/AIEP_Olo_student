@@ -1,0 +1,8 @@
+# Anything large enough to be worth LFS shouldn't be committed at all — it belongs in a
+# GitHub Release asset, registered by URL + sha256 in shared/datasets.yaml.
+# These rules only stop git from trying to diff the small binary fixtures we do commit.
+*.parquet binary
+*.npy     binary
+*.zip     binary
+*.png     binary
+*.jpg     binary

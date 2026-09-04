@@ -1,0 +1,44 @@
+# Conda environment for the Olo Academy AI Engineering Bootcamp (AIEP).
+#
+# This file supplies ONLY the interpreter and the handful of packages that are
+# genuinely easier to get from conda-forge than from a wheel. Every Python
+# package lives in requirements.in / requirements.lock and is installed by `uv`.
+#
+# Local setup:
+#   conda env create -f environment.yml
+#   conda activate aiep
+#   uv pip install -r requirements.lock
+#   uv pip install -e shared/
+#   python -m ipykernel install --user --name aiep --display-name "Python (aiep)"
+#
+# Or just: make setup
+#
+# On Google Colab: ignore this file entirely. Each notebook's portable setup cell
+# installs what that lab needs. See docs/Data_Guide.md.
+#
+# Design notes
+# ------------
+# - ONE environment for all 8 weeks. A student installs once on day 1 and never again.
+# - Miniconda owns the interpreter; `uv` owns the packages. uv resolves and installs
+#   the whole stack in seconds instead of minutes, and requirements.lock pins every
+#   transitive dependency by hash-compatible version — which the old floor-pinned
+#   conda spec never did.
+# - CPU-only by design. No lab requires a GPU; weeks 3-6 are faster with one but must
+#   complete on a laptop CPU inside the 115-minute lab slot. For an optional CUDA
+#   build see requirements-gpu.in.
+# - graphviz is here and not in requirements.in because the Python binding needs the
+#   system `dot` binary, and conda-forge ships both together on every platform.
+
+name: aiep
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pip
+  - uv>=0.4                   # installs everything in requirements.lock
+
+  # --- conda-only binaries -------------------------------------------------
+  - graphviz>=9.0             # the `dot` binary, needed by the tree plots in W3D1
+  - python-graphviz>=0.20

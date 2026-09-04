@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aiep"
+version = "1.0.0"
+description = "Helper package for the Olo Academy AI Engineering Bootcamp labs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Olo Academy" }]
+
+# Deliberately minimal. Everything heavy (torch, transformers, sklearn) is a lab
+# dependency installed by environment.yml or by the notebook's ensure(...) call —
+# not a dependency of this package, so it stays installable on Colab in seconds.
+dependencies = [
+    "pyyaml>=6.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools]
+packages = ["aiep"]
+
+[tool.setuptools.package-data]
+aiep = ["../datasets.yaml"]

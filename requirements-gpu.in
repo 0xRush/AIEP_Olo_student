@@ -1,0 +1,20 @@
+# Optional CUDA build of PyTorch, for instructors or students with an NVIDIA GPU.
+#
+# No lab requires a GPU — weeks 3 to 6 are sized to finish on a laptop CPU inside the
+# lab slot. This file exists only to make an available GPU usable, never to make one
+# necessary. The one place a GPU genuinely helps is the W4D3 detection fine-tune
+# stretch section, which is why that section also ships a Colab path.
+#
+# Install the base stack first, then override torch:
+#
+#   uv pip install -r requirements.lock
+#   uv pip install -r requirements-gpu.in
+#
+# Check your CUDA version with `nvidia-smi` and swap cu121 for the matching build.
+# Apple silicon needs nothing here — the default wheels use MPS, and aiep.env.device()
+# picks it up automatically.
+
+--index-url https://download.pytorch.org/whl/cu121
+
+torch>=2.3
+torchvision>=0.18
