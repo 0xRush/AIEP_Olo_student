@@ -1,0 +1,147 @@
+{
+  "dataset": "reviews_sentiment",
+  "n_rows": 12000,
+  "model": "TfidfVectorizer(min_df=2) + LogisticRegression",
+  "vocabulary_size": 14485,
+  "cv": {
+    "splitter": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "folds_sha256": "6d7021a36b3ccef2ceb58c9904d500c71bfb2d3cc5e75b46eadfb7a60896f9b8"
+  },
+  "accuracy_mean": 0.83,
+  "accuracy_std": 0.0127,
+  "accuracy_folds": [
+    0.8167,
+    0.825,
+    0.8529,
+    0.8217,
+    0.8337
+  ],
+  "fit_seconds": 0.69,
+  "inference_seconds_per_1000": 0.0098,
+  "negation": {
+    "sentences": [
+      "the service was good",
+      "the service was not good"
+    ],
+    "predicted": [
+      1,
+      0
+    ],
+    "p_positive": [
+      0.561,
+      0.1397
+    ],
+    "expected": [
+      1,
+      0
+    ],
+    "correct": true
+  },
+  "order_pair": {
+    "sentences": [
+      "the food was good but the service was bad",
+      "the service was good but the food was bad"
+    ],
+    "vectors_identical": true,
+    "predicted": [
+      0,
+      0
+    ],
+    "p_positive": [
+      0.09583968356107692,
+      0.09583968356107692
+    ]
+  },
+  "by_language": {
+    "arabic_rows": 480,
+    "arabic_accuracy": 0.7625,
+    "english_accuracy": 0.8328
+  },
+  "top_positive": [
+    [
+      "great",
+      8.50207709956121
+    ],
+    [
+      "best",
+      5.415783175545696
+    ],
+    [
+      "love",
+      5.060854473023266
+    ],
+    [
+      "excellent",
+      4.884887251471145
+    ],
+    [
+      "easy",
+      4.1123596151742685
+    ],
+    [
+      "awesome",
+      3.4809005980493177
+    ],
+    [
+      "amazing",
+      3.4317202603609815
+    ],
+    [
+      "perfect",
+      3.3947661991113565
+    ],
+    [
+      "fun",
+      3.3216819851310526
+    ],
+    [
+      "good",
+      3.043110201893751
+    ]
+  ],
+  "top_negative": [
+    [
+      "not",
+      -6.689210948373973
+    ],
+    [
+      "boring",
+      -5.501481851489257
+    ],
+    [
+      "worst",
+      -5.320011548849134
+    ],
+    [
+      "waste",
+      -4.820510797073342
+    ],
+    [
+      "disappointed",
+      -4.586662520680786
+    ],
+    [
+      "bad",
+      -4.389587746352783
+    ],
+    [
+      "money",
+      -4.328498618152987
+    ],
+    [
+      "terrible",
+      -3.295471426394367
+    ],
+    [
+      "disappointing",
+      -3.284217743354138
+    ],
+    [
+      "disappointment",
+      -3.192490195974285
+    ]
+  ]
+}

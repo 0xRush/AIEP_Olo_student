@@ -1,0 +1,129 @@
+{
+  "dataset": "credit_default",
+  "metric": "roc_auc",
+  "cv": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)",
+  "best_model": "boosting (lr=0.05, n=200)",
+  "best_params": {
+    "learning_rate": 0.05,
+    "n_estimators": 200
+  },
+  "cv_mean": 0.7812338351021015,
+  "cv_std": 0.0054128121165293915,
+  "all_models": {
+    "boosting (lr=0.05, n=200)": {
+      "cv_mean": 0.7812338351021015,
+      "cv_std": 0.0054128121165293915
+    },
+    "random forest (200)": {
+      "cv_mean": 0.7656170519006779,
+      "cv_std": 0.0036373044004742953
+    },
+    "decision tree (depth 5)": {
+      "cv_mean": 0.7548079519669322,
+      "cv_std": 0.007230546630228745
+    },
+    "logistic regression": {
+      "cv_mean": 0.7226509054903353,
+      "cv_std": 0.0039229576346969655
+    },
+    "dummy (most_frequent)": {
+      "cv_mean": 0.5,
+      "cv_std": 0.0
+    }
+  },
+  "feature_ranking": [
+    {
+      "feature": "PAY_0",
+      "importance": 0.10144393927720045
+    },
+    {
+      "feature": "AGE",
+      "importance": 0.06706082793641394
+    },
+    {
+      "feature": "BILL_AMT1",
+      "importance": 0.06121040841559505
+    },
+    {
+      "feature": "LIMIT_BAL",
+      "importance": 0.059708389317419217
+    },
+    {
+      "feature": "BILL_AMT2",
+      "importance": 0.05505379818656226
+    },
+    {
+      "feature": "BILL_AMT3",
+      "importance": 0.05171806747416234
+    },
+    {
+      "feature": "BILL_AMT6",
+      "importance": 0.05139608145086849
+    },
+    {
+      "feature": "BILL_AMT4",
+      "importance": 0.05058174754556733
+    },
+    {
+      "feature": "PAY_AMT1",
+      "importance": 0.05056822636136897
+    },
+    {
+      "feature": "BILL_AMT5",
+      "importance": 0.049324241261586695
+    },
+    {
+      "feature": "PAY_AMT2",
+      "importance": 0.04794763113354941
+    },
+    {
+      "feature": "PAY_AMT3",
+      "importance": 0.045887646345774996
+    },
+    {
+      "feature": "PAY_AMT6",
+      "importance": 0.04572432272029923
+    },
+    {
+      "feature": "PAY_AMT5",
+      "importance": 0.043426982400069945
+    },
+    {
+      "feature": "PAY_AMT4",
+      "importance": 0.04336897836083486
+    },
+    {
+      "feature": "PAY_2",
+      "importance": 0.04011701087948434
+    },
+    {
+      "feature": "PAY_4",
+      "importance": 0.024449639642631603
+    },
+    {
+      "feature": "PAY_3",
+      "importance": 0.02318856988400699
+    },
+    {
+      "feature": "PAY_6",
+      "importance": 0.021186585179811028
+    },
+    {
+      "feature": "EDUCATION",
+      "importance": 0.02063532267016753
+    },
+    {
+      "feature": "PAY_5",
+      "importance": 0.019987074192641494
+    },
+    {
+      "feature": "MARRIAGE",
+      "importance": 0.013887077125229115
+    },
+    {
+      "feature": "SEX",
+      "importance": 0.01212743223875478
+    }
+  ],
+  "notes": "Beat this on W3D5 with the neural network, or report that it was not beaten. The std is here so that comparison can be honest."
+}

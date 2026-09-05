@@ -40,6 +40,11 @@ shared/data_cache/*
 !shared/data_cache/*.parquet
 !shared/data_cache/*.json
 !shared/data_cache/*.md
+# ...except the ones that belong in a release. The *.parquet whitelist above assumes a
+# fixture is small; sentence_embeddings_sample is 78 MB, and shared/datasets.yaml already
+# points at the data-v1 release asset for it. Weeks 1-4's big fixtures are .zip, which
+# line 79 already excludes, so this is the first parquet to defeat the rule.
+shared/data_cache/sentence_embeddings_sample.parquet
 
 # Hugging Face / torch model caches
 .cache/

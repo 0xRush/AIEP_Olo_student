@@ -23,6 +23,7 @@ __all__ = [
     "registry",
     "dataset_info",
     "get_dataset",
+    "get_dataset_dir",
     "load_artefact",
     "save_artefact",
     "describe_dataset",
@@ -251,6 +252,41 @@ def get_dataset(name: str, *, verify: bool = True) -> Path:
         f"Could not obtain dataset {name!r} ({filename}).\n"
         f"Expected it in {destination}, or downloadable from {url or '(no url registered)'}."
     )
+
+
+def get_dataset_dir(name: str, *, verify: bool = True) -> Path:
+    """Fetch a zipped dataset and return the directory it extracts to.
+
+    Same resolution as :func:`get_dataset`, plus one step: the archive is unpacked once
+    into ``<cache>/_extracted/<name>/`` and that folder is returned. Re-running the cell
+    reuses the extracted copy instead of unzipping again, so a notebook can call this in
+    its setup cell without paying for it every time.
+
+    The image datasets of weeks 4 and 6 are all zips; the tabular ones are single files
+    and keep using :func:`get_dataset`.
+    """
+    archive = get_dataset(name, verify=verify)
+    if archive.suffix != ".zip":
+        raise ValueError(f"{name!r} is {archive.name}, not a zip — use get_dataset() for it.")
+
+    target = cache_dir() / "_extracted" / name
+    marker = target / ".extracted"
+    if marker.exists():
+        print(f"📁 {name}: using extracted copy at {target}")
+        return target
+
+    import zipfile
+
+    if target.exists():
+        shutil.rmtree(target)
+    target.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(archive) as zf:
+        zf.extractall(target)
+    marker.write_text(sha256_of(archive))
+
+    files = sum(1 for _ in target.rglob("*") if _.is_file())
+    print(f"📦 {name}: extracted {files - 1} file(s) to {target}")
+    return target
 
 
 # --------------------------------------------------------------------------- artefacts

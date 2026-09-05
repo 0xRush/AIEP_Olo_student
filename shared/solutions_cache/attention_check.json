@@ -1,0 +1,50 @@
+{
+  "values": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      1.0,
+      1.0
+    ]
+  ],
+  "query": [
+    1.0,
+    0.0
+  ],
+  "softmax_of_1_0_1": [
+    0.4223,
+    0.1554,
+    0.4223
+  ],
+  "weights": [
+    0.4223,
+    0.1554,
+    0.4223
+  ],
+  "output": [
+    0.8446,
+    0.5777
+  ],
+  "flipped_query": [
+    0.0,
+    1.0
+  ],
+  "flipped_weights": [
+    0.1554,
+    0.4223,
+    0.4223
+  ],
+  "batched_row_0_matches": true,
+  "order_invariant": true,
+  "reversed_output": [
+    0.8446,
+    0.5777
+  ],
+  "naive_softmax_overflows": true
+}

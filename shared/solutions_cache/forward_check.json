@@ -1,0 +1,48 @@
+{
+  "lecture_network": {
+    "architecture": "2-2-1",
+    "input": [
+      1.0,
+      2.0
+    ],
+    "hidden_after_relu": [
+      2.5,
+      1.0
+    ],
+    "logit": 1.5,
+    "output": 0.8175744761936437,
+    "slide_values": {
+      "hidden": [
+        2.5,
+        1.0
+      ],
+      "logit": 1.5,
+      "output": 0.8176
+    }
+  },
+  "week_network": {
+    "architecture": "2-8-1",
+    "seed": 42,
+    "init": "normal(0, sqrt(2 / fan_in)), biases zero",
+    "shapes": {
+      "W1": [
+        2,
+        8
+      ],
+      "b1": [
+        8
+      ],
+      "W2": [
+        8,
+        1
+      ],
+      "b2": [
+        1
+      ]
+    },
+    "n_weights": 24,
+    "n_biases": 9,
+    "untrained_accuracy": 0.64
+  },
+  "notes": "W3D3 loads this and re-checks the forward pass before adding the backward pass. If the numbers move, the bug is in the new code."
+}
