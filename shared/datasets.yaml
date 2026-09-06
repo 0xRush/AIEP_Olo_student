@@ -295,10 +295,12 @@ small_image_5class:
 image_captions_small:
   file: image_captions_small.zip
   url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/image_captions_small.zip
-  sha256: null
-  size_mb: null
-  licence: "CC BY 2.0 (images); captions written for this course, CC0"
-  source: "Curated image-caption pairs, one short caption per image"
+  sha256: "57a7700afc4e8a672807de514cde073be1c2973dabdbad3c47688ed08be4b026"
+  size_mb: 6.62
+  licence: "CC BY 2.0 / CC BY-SA 2.0 (images, Flickr via COCO); CC BY 4.0 (the 192 COCO
+    captions); CC0 (the 8 hard-case captions, written for this course)"
+  source: "Held out from the same COCO CC-BY pool as small_image_5class, with COCO's own
+    captions_train2017 sentences; no image id in common with the week 4 sets"
   rows: 200
   target: null
   used_by: ["W6D5"]
@@ -361,8 +363,8 @@ reviews_sentiment:
     مراجعات منتجات مع تسمية للمشاعر. تُستخدم لخط الأساس بـ TF-IDF (الأسبوع ٥ اليوم ١)
     وللمقارنة بالتمثيلات (اليوم الثاني) ولضبط BERT (اليوم الخامس)، فتُقاس كل الطرائق على
     البيانات نفسها — وهذا هو جوهر التكليف الخامس.
-  gotcha_en: "About 4% of reviews are in a different language from the rest. TF-IDF ignores them; BERT partly doesn't."
-  gotcha_ar: "نحو ٤٪ من المراجعات بلغة مختلفة عن البقية. يتجاهلها TF-IDF، بينما لا يتجاهلها BERT كليًا."
+  gotcha_en: "480 reviews — 4% — are Arabic, and nothing in the text marks them. Measured in W5D1 and W5D5: TF-IDF scores 0.76 on that subset against 0.83 on English, and an English-only DistilBERT fine-tune scores 0.52 — chance. A subword tokeniser is not multilingual understanding."
+  gotcha_ar: "٤٨٠ مراجعة — ٤٪ — بالعربية، ولا شيء في النص يميّزها. وبالقياس في الأسبوع الخامس اليومين الأول والخامس: يحقّق TF-IDF ٠٫٧٦ على هذه الشريحة مقابل ٠٫٨٣ على الإنجليزية، ويحقّق ضبط DistilBERT الإنجليزي ٠٫٥٢ أي مستوى الصدفة. فالمُجزّئ إلى وحدات فرعية ليس فهمًا متعدّد اللغات."
 
 sentence_embeddings_sample:
   file: sentence_embeddings_sample.parquet
@@ -393,9 +395,9 @@ sentence_embeddings_sample:
 
 policy_docs:
   file: policy_docs.zip
-  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/policy_docs.zip
-  sha256: null
-  size_mb: null
+  url: https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/data_cache/policy_docs.zip
+  sha256: "b48552f7b0fb13c552d9e2ffd69413947f0593c94834f44626de433ccfede600"
+  size_mb: 0.02
   licence: "CC0 (classroom fixture)"
   source: "Written for this course"
   rows: 24
@@ -416,9 +418,9 @@ policy_docs:
 
 rag_eval_questions:
   file: rag_eval_questions.parquet
-  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/rag_eval_questions.parquet
-  sha256: null
-  size_mb: null
+  url: https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/data_cache/rag_eval_questions.parquet
+  sha256: "a84c42c5079c89d25a716365a7b59d12887b499ee9fbbdd08b31ea5b29c38b8b"
+  size_mb: 0.01
   licence: "CC0 (classroom fixture)"
   source: "Written for this course"
   rows: 40
@@ -436,11 +438,11 @@ rag_eval_questions:
 
 movies_ratings:
   file: movies_ratings.parquet
-  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/movies_ratings.parquet
-  sha256: null
-  size_mb: null
+  url: https://raw.githubusercontent.com/0xRush/AIEP_Olo_student/master/shared/data_cache/movies_ratings.parquet
+  sha256: "42d24323221b1e55384848fd83396ec13fa7f5d9f3cba7855202f9feb2c8d1b6"
+  size_mb: 1.42
   licence: "MovieLens terms — research/teaching use permitted"
-  source: "https://grouplens.org/datasets/movielens/ (ml-latest-small)"
+  source: "https://grouplens.org/datasets/movielens/ (ml-latest-small), fetched from a Hugging Face mirror because GroupLens' own host serves an expired TLS certificate; each CSV's sha256 is pinned in tools/make_datasets.py"
   rows: 100836
   target: rating
   used_by: ["W7D5"]

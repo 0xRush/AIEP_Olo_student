@@ -28,9 +28,17 @@ no registry entry is a bug: no lab can reach it, because notebooks never contain
 ```bash
 make data           # download everything missing
 make data-verify    # re-hash every cached file against the registry
+make data-urls      # can a clean clone actually get every file? (needs the network)
 python ../tools/fetch_datasets.py --only telco_churn
 python ../tools/fetch_datasets.py --update-hashes   # fill in sha256/size after adding a file
 ```
+
+**`make data-urls` is the one to run before a cohort.** `--lint` only checks that the registry is
+complete, and it is satisfied by a file sitting in your own cache — which is exactly the file the
+student does not have. `--check-urls` asks the release whether the asset is still there, and holds
+every dataset to the rule that actually matters: **committed to git, or downloadable.** A dataset
+that is neither cannot be obtained by anyone who did not author it, and the ≥ 5 MB row of the table
+above means every zip in this directory depends entirely on its release asset existing.
 
 ## data_cache vs artefacts
 

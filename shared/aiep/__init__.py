@@ -36,12 +36,12 @@ warnings.filterwarnings(
     module=r"sklearn\..*",
 )
 
-_SUBMODULES = ("paths", "data", "env", "checks", "viz")
+_SUBMODULES = ("paths", "data", "env", "checks", "viz", "llm")
 
 __all__ = [*_SUBMODULES, "__version__"]
 
 if TYPE_CHECKING:  # for editors and type checkers only
-    from . import checks, data, env, paths, viz  # noqa: F401
+    from . import checks, data, env, llm, paths, viz  # noqa: F401
 
 
 def __getattr__(name: str):

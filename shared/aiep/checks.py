@@ -107,8 +107,13 @@ def check_shape(obj: Any, expected: tuple, message_en: str, message_ar: str) -> 
     return check(ok, message_en + detail, message_ar + detail)
 
 
-def report(*, raise_on_failure: bool = True) -> bool:
-    """Print the results table and clear them. Returns True if everything passed.
+def report(*, raise_on_failure: bool = True) -> None:
+    """Print the results table and clear them.
+
+    Returns nothing on purpose. ``report()`` is the last statement of the last cell of
+    every lab, and a return value would be echoed under the table as a bare ``True`` —
+    noise directly beneath the one output a student is meant to read. Code that needs
+    the verdict can inspect :func:`results` before calling this.
 
     Raises AssertionError on failure by default, so a notebook run headlessly (in
     ``tools/verify_notebooks.py`` or nbconvert) fails loudly rather than printing a
@@ -117,7 +122,7 @@ def report(*, raise_on_failure: bool = True) -> bool:
     if not _RESULTS:
         print("⚠️  No checks were recorded. Did you call check() before report()?")
         print("⚠️  لم تُسجَّل أي فحوصات. هل استدعيت check() قبل report()؟")
-        return True
+        return
 
     passed = [r for r in _RESULTS if r.passed]
     failed = [r for r in _RESULTS if not r.passed]
@@ -142,7 +147,6 @@ def report(*, raise_on_failure: bool = True) -> bool:
         print(f"  ✅ All {total} checks passed. / اجتزت جميع الفحوصات ({total}).")
     print(line)
 
-    ok = not failed
     reset()
 
     if failed and raise_on_failure:
@@ -150,4 +154,3 @@ def report(*, raise_on_failure: bool = True) -> bool:
             f"{len(failed)} sanity check(s) failed — see the output above. "
             f"فشل {len(failed)} من الفحوصات، راجع المخرجات أعلاه."
         )
-    return ok

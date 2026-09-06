@@ -46,6 +46,13 @@ shared/data_cache/*
 # line 79 already excludes, so this is the first parquet to defeat the rule.
 shared/data_cache/sentence_embeddings_sample.parquet
 
+# ...and the reverse case. The .zip exclusion assumes a zip is a big image archive, and
+# for five of the six it is. policy_docs.zip is 24 KB of plain-text policy documents, and
+# it is the corpus the whole of week 7 reads. Left out of git it depended entirely on a
+# release asset that was never uploaded, which made W7D1-D4 unobtainable from a fresh
+# clone. It is small enough to commit, so it is committed. See `make data-urls`.
+!shared/data_cache/policy_docs.zip
+
 # Hugging Face / torch model caches
 .cache/
 **/hf_cache/
@@ -82,9 +89,16 @@ theory_pptx/
 
 # Archives / build output
 *.zip
+# ...except the one small text corpus that lives in a zip. This re-include has to come
+# after the blanket *.zip rule, or git never sees it. See the note beside the data_cache
+# rules above.
+!shared/data_cache/policy_docs.zip
 *.tar.gz
 dist/
 build/
 
 # The generated student repo lives outside this tree, but guard against a stray copy
 _student_repo/
+
+# Lab output: the serving demo W8D1 writes beside its notebook
+**/serving_demo/

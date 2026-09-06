@@ -1,0 +1,94 @@
+{
+  "toy_image": [
+    [
+      1,
+      2,
+      0,
+      1
+    ],
+    [
+      0,
+      3,
+      1,
+      0
+    ],
+    [
+      2,
+      1,
+      4,
+      2
+    ],
+    [
+      1,
+      0,
+      2,
+      3
+    ]
+  ],
+  "toy_patches": [
+    [
+      1,
+      2,
+      0,
+      3
+    ],
+    [
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      2,
+      1,
+      1,
+      0
+    ],
+    [
+      4,
+      2,
+      2,
+      3
+    ]
+  ],
+  "toy_tokens": [
+    [
+      0.5,
+      3.5,
+      3.5
+    ],
+    [
+      1.0,
+      1.0,
+      -0.5
+    ],
+    [
+      2.0,
+      1.0,
+      0.5
+    ],
+    [
+      4.0,
+      3.5,
+      4.0
+    ]
+  ],
+  "toy_pixel_scores": 256,
+  "toy_patch_scores": 16,
+  "real_pixel_scores": 2517630976,
+  "real_patch_scores": 38416,
+  "ratio": 65536,
+  "checkpoint": "google/vit-base-patch16-224",
+  "sequence_length": 197,
+  "n_patches": 196,
+  "hidden_size": 768,
+  "patch_dim": 768,
+  "forward_seconds": 0.969,
+  "resolution_trap": {
+    "size": 160,
+    "outcome": "raised",
+    "evidence": "ValueError: Input image size (160*160) doesn't match model (224*224).",
+    "interpolated_length": 101
+  },
+  "vit_resnet_agreement": 0.8904
+}
