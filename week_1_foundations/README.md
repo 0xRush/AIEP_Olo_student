@@ -12,6 +12,9 @@ The week you stop guessing what machine learning is and build one.
 
 ---
 
+
+
+
 ## What you'll be able to do by the end of the week
 
 - Say precisely what AI, machine learning, and deep learning are and how they nest — and, more

@@ -22,7 +22,7 @@ Labs, datasets, and the capstone brief for the 8-week AI Engineering Bootcamp.
    cd AIEP_Olo_student
    git remote add upstream https://github.com/0xRush/AIEP_Olo_student.git
    ```
-3. Build the environment:
+3. Build the environment. The same four commands on macOS, Linux and Windows:
    ```bash
    conda env create -f environment.yml
    conda activate aiep
@@ -31,8 +31,26 @@ Labs, datasets, and the capstone brief for the 8-week AI Engineering Bootcamp.
    ```
    Miniconda gives you the interpreter; `uv` installs the packages, and `requirements.lock` pins
    every version so your environment matches everyone else's.
-   No conda? `uv venv && uv pip install -r requirements.lock && uv pip install -e shared/`
-   No laptop? Everything runs on Google Colab — see below.
+
+   **On Windows,** run these in **Anaconda Prompt**, not PowerShell — or run `conda init powershell`
+   once and open a new window. If `conda` is "not recognised", that is the reason.
+
+   **No conda?** Then, and only then, the activate line differs:
+   ```bash
+   uv venv
+   source .venv/bin/activate        # macOS / Linux
+   .venv\Scripts\activate           # Windows
+   uv pip install -r requirements.lock
+   uv pip install -e shared/
+   ```
+   This route skips the conda-supplied `graphviz` binary, which the W3D1 tree plots need. Install it
+   yourself: `brew install graphviz` (macOS), `sudo apt install graphviz` (Linux),
+   `winget install graphviz` (Windows).
+
+   **On macOS** you need macOS 14 or newer on Apple silicon, macOS 15 or newer on Intel — one of the
+   search libraries in week 7 ships no wheel below that. On an older Mac, use Colab.
+
+   No laptop at all? Everything runs on Google Colab — see below.
 
 <div dir="rtl" align="right">
 
@@ -41,9 +59,20 @@ Labs, datasets, and the capstone brief for the 8-week AI Engineering Bootcamp.
 ١. **أنشئ نسخة (Fork) من هذا المستودع** على GitHub. نسختك هي مكان كل عملك طوال المعسكر: المعامل
    والتكاليف ومشروع التخرّج.
 ٢. استنسخ نسختك واربطها بمستودع المعسكر (انظر الأوامر أعلاه).
-٣. جهّز البيئة بالأوامر أعلاه: Miniconda يعطيك مُفسّر بايثون، وأداة `uv` تُثبّت الحِزم، وملف
-   `requirements.lock` يُثبّت كل النسخ فتكون بيئتك مطابقة لبيئة زملائك. وإن لم يكن conda لديك فاستخدم
-   `uv venv`، أو اعمل على Google Colab.
+٣. جهّز البيئة بالأوامر أعلاه، وهي نفسها على macOS و Linux و Windows: مُفسّر بايثون يأتي من
+   Miniconda، وأداة `uv` تُثبّت الحِزم، وملف `requirements.lock` يُثبّت كل النسخ فتكون بيئتك مطابقة
+   لبيئة زملائك.
+
+   على **Windows** شغّل هذه الأوامر في نافذة **Anaconda Prompt** لا في PowerShell، أو نفّذ
+   `conda init powershell` مرة واحدة ثم افتح نافذة جديدة. وإن ظهر لك أن `conda` غير معروف فهذا سببه.
+
+   وإن لم يكن conda لديك فاستخدم `uv venv`، وسطر التفعيل هنا وحده يختلف: `source .venv/bin/activate`
+   على macOS و Linux، و`.venv\Scripts\activate` على Windows. هذا الطريق لا يجلب برنامج `graphviz`
+   الذي تحتاجه رسوم الأشجار في الأسبوع الثالث، فثبّته بنفسك: `brew install graphviz` أو
+   `sudo apt install graphviz` أو `winget install graphviz`.
+
+   وعلى macOS تحتاج الإصدار ١٤ فما فوق على معالج Apple، والإصدار ١٥ فما فوق على معالج Intel؛ فإن كان
+   جهازك أقدم فاعمل على Google Colab.
 
 </div>
 
@@ -60,12 +89,22 @@ git add . && git commit -m "W3D2 lab" && git push
 Commit every day. Your eight weeks of commit history is part of what the capstone is graded
 on — and it is what you show an employer.
 
+If a morning's pull touches `requirements.lock`, re-run the installer once — it is quick, and it is
+the only time you ever need to think about the environment again:
+
+```bash
+uv pip install -r requirements.lock
+```
+
 <div dir="rtl" align="right">
 
 ## كل يوم
 
 اسحب التحديثات صباحًا بأمر `git pull upstream master` لتحصل على معمل اليوم وحلّ الأمس، ثم اعمل،
 ثم ارفع عملك مساءً بـ `git add` و`git commit` و`git push`.
+
+وإن غيّرت التحديثات ملف `requirements.lock` فأعد تشغيل `uv pip install -r requirements.lock` مرة
+واحدة، وهي المرة الوحيدة التي تحتاج فيها إلى التفكير في البيئة بعد اليوم الأول.
 
 التزم بالرفع يوميًا؛ فسجلّ التزاماتك عبر ثمانية أسابيع جزء من تقييم مشروع التخرّج، وهو ما تعرضه
 على جهة التوظيف.
@@ -172,7 +211,11 @@ the submission time.
 
 | Problem | Fix |
 |---|---|
-| `ModuleNotFoundError: aiep` | Re-run `pip install -e shared/`, then check *Kernel → Change kernel → Python (aiep)* |
+| `ModuleNotFoundError: aiep` | Re-run `uv pip install -e shared/`, then check *Kernel → Change kernel → Python (aiep)* |
+| Windows: `conda` is not recognised | Use **Anaconda Prompt**, or run `conda init powershell` once and open a new window |
+| Windows: `source .venv/bin/activate` fails | Windows spells it `.venv\Scripts\activate` |
+| A package fails to install | Run the command from the repo root. `uv.toml` lives there, and uv needs to find it |
+| `graphviz` / `dot` not found | You took the `uv venv` route. `brew install graphviz` (macOS), `sudo apt install graphviz` (Linux), `winget install graphviz` (Windows) |
 | `git pull` conflicts | You edited a `_solution.ipynb`. `git checkout --theirs <file>` and work in `_blank` instead |
 | A dataset won't download | Re-run the cell; if it still fails it will offer you an upload prompt |
 | Anything else | Ask in the cohort channel. Paste the full error, not a screenshot of part of it |

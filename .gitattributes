@@ -1,0 +1,34 @@
+# Line endings: LF in the repo AND in every working tree, on every platform.
+#
+# Without this, git on Windows (core.autocrlf=true by default) rewrites all 108
+# notebooks, every .md and every .py to CRLF on clone. A notebook is JSON, so that is a
+# whole-file diff: `git pull upstream master` conflicts every morning, and the --check
+# linters (make_variants --check, build_figures --check) fail with no visible cause.
+#
+# Everything here was authored on macOS and is already committed as LF, so this file
+# changes nothing in existing checkouts — it only stops Windows from breaking new ones.
+
+* text=auto eol=lf
+
+# Spelled out for the files that actually hurt, so the intent survives an edit above.
+*.ipynb text eol=lf
+*.py    text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+*.lock  text eol=lf
+*.in    text eol=lf
+
+# Binary: never touch these, and never try to diff them as text.
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.parquet binary
+*.npy     binary
+*.zip     binary
+*.docx    binary
+*.pptx    binary
+*.potx    binary
+*.pdf     binary

@@ -1,0 +1,29 @@
+# uv settings for this repo. Read automatically by any `uv pip` command run from the
+# repo root, so nobody has to remember a flag — `uv pip install -r requirements.lock`
+# is the whole student instruction on every platform.
+#
+# These two settings exist because requirements.lock cannot carry them itself:
+#
+# index-strategy: uv defaults to first-index-wins to prevent dependency-confusion
+#   attacks — a package found on the PyTorch index is never looked up on PyPI, even if
+#   PyPI has a newer version. That default makes torchmetrics unresolvable here, because
+#   the PyTorch index carries an old copy of it. Both indexes below are first-party and
+#   trusted, so considering versions from both is the correct behaviour in this case.
+#
+# pytorch-cpu: the lock pins `torch==...+cpu` on Linux and Windows (CPU-only by design —
+#   no lab needs a GPU, and the PyPI wheel bundles multi-GB of CUDA). A `+cpu` local
+#   version only resolves if this index is configured. For an optional CUDA build see
+#   requirements-gpu.in.
+#
+# Needs uv >= 0.5 for [[index]]; environment.yml pins that floor.
+
+index-strategy = "unsafe-best-match"
+
+[[index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
+
+[[index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"

@@ -24,7 +24,10 @@
 ```bash
 git clone <your-repo-url>
 cd <your-repo>
-uv venv && source .venv/bin/activate       # or reuse the course env: conda activate aiep
+uv venv
+source .venv/bin/activate                  # macOS / Linux
+.venv\Scripts\activate                     # Windows
+                                           # or reuse the course env: conda activate aiep
 uv pip install -r requirements.txt
 
 make data      # download / pull the raw data

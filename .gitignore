@@ -87,6 +87,12 @@ theory_pptx/
 *.pptx
 *.potx
 
+# Executed-run scratch notebooks. nbconvert --output .run leaves one of these beside the
+# lab, with every output saved and no TODOs — i.e. the answers. One was committed in
+# e6faa1f and shipped to the student repo in the next build. See tools/check_lab_files.py.
+**/.run.ipynb
+*.run.ipynb
+
 # Archives / build output
 *.zip
 # ...except the one small text corpus that lives in a zip. This re-include has to come

@@ -37,7 +37,8 @@ channels:
 dependencies:
   - python=3.11
   - pip
-  - uv>=0.4                   # installs everything in requirements.lock
+  - uv>=0.5                   # installs everything in requirements.lock;
+                              # >=0.5 for the [[index]] table in uv.toml
 
   # --- conda-only binaries -------------------------------------------------
   - graphviz>=9.0             # the `dot` binary, needed by the tree plots in W3D1
