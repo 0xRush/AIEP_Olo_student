@@ -54,6 +54,11 @@ The week you stop guessing what machine learning is and build one.
 
 **Assignment 1** (regression + classification) is issued on D4 and due W2D5.
 
+D4 also carries two **optional extra labs**, `labs/D4_extra_trees` and `labs/D4_extra_svm`. They are
+not assessed and nothing later depends on them; take them if you finish the day's lab early, or at
+home. Each adds one more way to draw a decision boundary — a tree's staircase of boxes, and a support
+vector machine's curve — on data you have already met.
+
 <div dir="rtl" align="right">
 
 ## الأيام
@@ -67,6 +72,11 @@ The week you stop guessing what machine learning is and build one.
 | **٥** | التعلّم غير المُوجَّه · K-Means · تحليل المكوّنات الرئيسية · ماذا تعني «المسافة» حين تختلف وحدات الأعمدة | **التجميع وتقليل الأبعاد** — جزّئ بيانات بلا تسميات ودافِع عن عدد العناقيد |
 
 **التكليف الأول** يُطرح في اليوم الرابع ويُسلَّم في الأسبوع الثاني اليوم الخامس.
+
+ويحمل اليوم الرابع أيضًا **معملين إضافيين اختياريين**، هما `labs/D4_extra_trees` و`labs/D4_extra_svm`.
+وهما غير مُقيَّمين ولا يعتمد عليهما شيء لاحق؛ فخذهما إن أنهيت معمل اليوم مبكرًا، أو في المنزل. ويضيف
+كلٌّ منهما طريقة أخرى لرسم حدّ القرار — سُلّم الصناديق في الشجرة، ومنحنى آلة المتّجهات الداعمة — على
+بيانات سبق أن التقيت بها.
 
 </div>
 
