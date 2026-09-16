@@ -54,10 +54,14 @@ The week you stop guessing what machine learning is and build one.
 
 **Assignment 1** (regression + classification) is issued on D4 and due W2D5.
 
-D4 also carries two **optional extra labs**, `labs/D4_extra_trees` and `labs/D4_extra_svm`. They are
-not assessed and nothing later depends on them; take them if you finish the day's lab early, or at
-home. Each adds one more way to draw a decision boundary — a tree's staircase of boxes, and a support
-vector machine's curve — on data you have already met.
+D4 and D5 each carry two **optional extra labs**. They are not assessed and nothing later depends on
+them; take them if you finish the day's lab early, or at home.
+
+- `labs/D4_extra_trees` and `labs/D4_extra_svm` — two more ways to draw a decision boundary: a tree's
+  staircase of boxes, and a support vector machine's curve.
+- `labs/D5_extra_kmeans` and `labs/D5_extra_pca_tsne` — K-Means on data you can see, where it gets the
+  answer wrong and you can watch why; then PCA against t-SNE on sixty-four columns of handwritten
+  digits, and what a projection is and is not evidence for.
 
 <div dir="rtl" align="right">
 
@@ -73,10 +77,14 @@ vector machine's curve — on data you have already met.
 
 **التكليف الأول** يُطرح في اليوم الرابع ويُسلَّم في الأسبوع الثاني اليوم الخامس.
 
-ويحمل اليوم الرابع أيضًا **معملين إضافيين اختياريين**، هما `labs/D4_extra_trees` و`labs/D4_extra_svm`.
-وهما غير مُقيَّمين ولا يعتمد عليهما شيء لاحق؛ فخذهما إن أنهيت معمل اليوم مبكرًا، أو في المنزل. ويضيف
-كلٌّ منهما طريقة أخرى لرسم حدّ القرار — سُلّم الصناديق في الشجرة، ومنحنى آلة المتّجهات الداعمة — على
-بيانات سبق أن التقيت بها.
+ويحمل اليومان الرابع والخامس **معملين إضافيين اختياريين** لكلٍّ منهما. وهي غير مُقيَّمة ولا يعتمد
+عليها شيء لاحق؛ فخذها إن أنهيت معمل اليوم مبكرًا، أو في المنزل.
+
+- `labs/D4_extra_trees` و`labs/D4_extra_svm` — طريقتان أخريان لرسم حدّ القرار: سُلّم الصناديق في
+  الشجرة، ومنحنى آلة المتّجهات الداعمة.
+- `labs/D5_extra_kmeans` و`labs/D5_extra_pca_tsne` — خوارزمية K-Means على بيانات تراها بعينك، حيث
+  تُخطئ الجواب وتستطيع أن ترى لماذا؛ ثم تحليل المكوّنات الرئيسية مقابل t-SNE على أربعة وستّين عمودًا من
+  أرقام مكتوبة بخطّ اليد، وعلى أي شيء يصلح الإسقاط دليلًا وعلى أي شيء لا يصلح.
 
 </div>
 
