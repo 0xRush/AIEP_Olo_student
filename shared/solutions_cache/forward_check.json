@@ -42,7 +42,7 @@
     },
     "n_weights": 24,
     "n_biases": 9,
-    "untrained_accuracy": 0.64
+    "untrained_accuracy": 0.736
   },
   "notes": "W3D3 loads this and re-checks the forward pass before adding the backward pass. If the numbers move, the bug is in the new code."
 }

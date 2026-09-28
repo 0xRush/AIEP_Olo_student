@@ -1,0 +1,42 @@
+{
+  "dataset": "messy_sales",
+  "target": "returned",
+  "features": [
+    "quantity",
+    "unit_price",
+    "discount_pct",
+    "ship_delay_days",
+    "order_month",
+    "order_dow",
+    "gross",
+    "is_bulk",
+    "is_deep_discount",
+    "discount_missing",
+    "revenue",
+    "city",
+    "channel",
+    "customer_tier"
+  ],
+  "categorical": [
+    "city",
+    "channel",
+    "customer_tier"
+  ],
+  "leak_column": "refund_amount",
+  "prediction_moment": "when the parcel leaves the warehouse",
+  "excluded": {
+    "refund_amount": "LEAKAGE \u2014 only exists after a return is accepted, which is after the prediction moment. Kept in the file so D5 can demonstrate it.",
+    "commission_paid": "not yet known \u2014 paid after revenue is settled, so unavailable at dispatch.",
+    "order_id": "identifier, not a measurement.",
+    "order_date": "raw text; replaced by order_dt and the features derived from it.",
+    "ship_date": "raw text; replaced by ship_dt and ship_delay_days.",
+    "order_dt": "kept for reference only; the model uses order_month and order_dow.",
+    "ship_dt": "kept for reference only; the model uses ship_delay_days."
+  },
+  "measured": {
+    "rows": 4880,
+    "return_rate": 0.22991803278688525,
+    "honest_auc": 0.6001733472644376,
+    "leaked_auc": 0.9996081876899696
+  }
+}
