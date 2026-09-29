@@ -80,7 +80,7 @@ credit_default:
   source: "UCI Default of Credit Card Clients"
   rows: 30000
   target: default_next_month
-  used_by: ["W1D4", "W3D1", "W3D5"]
+  used_by: ["W1D4", "W3D1"]
   description_en: >
     Credit-card clients with a default flag. Used for evaluation under class imbalance
     (W1D4) and for trees and ensembles (W3D1), where feature importance has a meaning
@@ -169,15 +169,15 @@ moons_toy:
   source: "Built for this course"
   rows: 500
   target: label
-  used_by: ["W1D4", "W1D5", "W3D2", "W3D3", "W3D4", "W3D5"]
+  used_by: ["W1D4", "W1D5", "W3D2", "W3D3", "W3D4"]
   description_en: >
     Two interleaving half-moons — not linearly separable, small enough to train a
-    from-scratch NumPy network on in seconds, and 2-D so the decision boundary can be
-    drawn. Used across W3D2-D5 so students compare like with like all week.
+    from-scratch PyTorch network on in seconds, and 2-D so the decision boundary can be
+    drawn. Used across W3D2-D4 so students compare like with like all week.
   description_ar: >
     هلالان متداخلان — غير قابلين للفصل خطيًا، وصغيران بما يكفي لتدريب شبكة مكتوبة من
-    الصفر بـ NumPy في ثوانٍ، وثنائيا البعد فيمكن رسم حدّ القرار. يُستخدمان من اليوم الثاني
-    إلى الخامس في الأسبوع الثالث ليقارن الطلاب المتشابه بالمتشابه طوال الأسبوع.
+    الصفر بـ PyTorch في ثوانٍ، وثنائيا البعد فيمكن رسم حدّ القرار. يُستخدمان من اليوم الثاني
+    إلى الرابع في الأسبوع الثالث ليقارن الطلاب المتشابه بالمتشابه طوال الأسبوع.
   gotcha_en: "Noise is set to 0.2, so perfect accuracy is impossible — a student chasing 100% is overfitting."
   gotcha_ar: "الضوضاء مضبوطة على ٠٫٢، فالدقة الكاملة مستحيلة؛ ومن يطارد ١٠٠٪ فهو يقع في فرط المطابقة."
 
@@ -190,7 +190,7 @@ mnist:
   source: "http://yann.lecun.com/exdb/mnist/"
   rows: 70000
   target: digit
-  used_by: ["W4D2"]
+  used_by: ["W3D5", "W4D2"]
   description_en: >
     28x28 greyscale handwritten digits. Downloaded and cached by torchvision on first
     use; do not call get_dataset for this one.
