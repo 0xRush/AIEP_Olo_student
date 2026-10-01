@@ -46,7 +46,7 @@ The week you build a neural network from nothing but NumPy, and then find out wh
 | **D2** | Why deep networks win on some data and lose on tabular · perceptron → MLP · activations · a forward pass by hand | **Forward pass in NumPy** — build it by hand, match the slide's numbers exactly |
 | **D3** | Loss functions (MSE, Cross-Entropy) · backpropagation, computed numerically | **Backprop from scratch** — add the backward pass and watch it learn |
 | **D4** | PyTorch: tensors, autograd, `Dataset`/`DataLoader`, the training loop | **Same network in PyTorch** — same result, a tenth of the code |
-| **D5** | Optimisers (SGD, momentum, Adam, RMSprop) · dropout · batch normalisation · early stopping | **Tuning an MLP** — an experiment grid, and a final architecture you can justify |
+| **D5** | Optimisers (SGD, momentum, Adam, RMSprop) · dropout · batch normalisation · early stopping | **Linear vs convolutional on CIFAR-10** — an MLP and a CNN under identical conditions, then scramble the pixels and see which one was using the picture |
 
 **Assignment 3** (neural network classification challenge) is issued on D3 and due W4D2.
 **Assignment 2** is due on D5. **The capstone brief is released on D5.**
@@ -61,7 +61,7 @@ The week you build a neural network from nothing but NumPy, and then find out wh
 | **٢** | لماذا تفوز الشبكات العميقة أحيانًا وتخسر على البيانات الجدولية · من العصبون إلى الشبكة · دوال التنشيط · المرور الأمامي يدويًا | **المرور الأمامي بـ NumPy** — ابنِه بيدك وطابِق أرقام الشريحة |
 | **٣** | دوال الخسارة · الانتشار الخلفي محسوبًا عدديًا | **الانتشار الخلفي من الصفر** — أضِف المرور الخلفي وراقب التعلّم |
 | **٤** | PyTorch: التنسورات وautograd وDataLoader وحلقة التدريب | **الشبكة نفسها بـ PyTorch** — النتيجة نفسها بعُشر الشيفرة |
-| **٥** | المُحسِّنات · Dropout · التطبيع الدُفعي · الإيقاف المبكر | **ضبط الشبكة** — شبكة تجارب ومعمارية نهائية تستطيع تبريرها |
+| **٥** | المُحسِّنات · Dropout · التطبيع الدُفعي · الإيقاف المبكر | **الخطّي مقابل الالتفافي على CIFAR-10** — شبكة متعدّدة الطبقات وشبكة التفافية في ظروف متطابقة، ثم اخلط البكسلات وانظر أيّهما كانت تستخدم الصورة |
 
 **التكليف الثالث** يُطرح في اليوم الثالث، و**الثاني** يُسلَّم في اليوم الخامس، و**كرّاسة مشروع التخرّج
 تُنشر في اليوم الخامس**.

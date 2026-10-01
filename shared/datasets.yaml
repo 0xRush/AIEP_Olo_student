@@ -190,7 +190,7 @@ mnist:
   source: "http://yann.lecun.com/exdb/mnist/"
   rows: 70000
   target: digit
-  used_by: ["W3D5", "W4D2"]
+  used_by: ["W4D2"]
   description_en: >
     28x28 greyscale handwritten digits. Downloaded and cached by torchvision on first
     use; do not call get_dataset for this one.
@@ -199,6 +199,30 @@ mnist:
     استخدام؛ ولا تُستدعى عبر get_dataset.
   gotcha_en: "MNIST is unrealistically easy. A near-perfect score here says nothing about real vision work — say so."
   gotcha_ar: "MNIST سهلة على نحو غير واقعي، والنتيجة شبه الكاملة فيها لا تدلّ على شيء في الرؤية الحاسوبية الحقيقية — صرّح بذلك."
+
+cifar10:
+  loader: torchvision
+  file: null
+  sha256: null
+  size_mb: 170
+  licence: "No formal licence; distributed by the authors for research and teaching"
+  source: "https://www.cs.toronto.edu/~kriz/cifar.html (Krizhevsky, Nair & Hinton, 2009)"
+  rows: 60000
+  target: object_class
+  used_by: ["W3D5"]
+  description_en: >
+    32x32 colour photographs in ten balanced classes (aeroplane, automobile, bird, cat,
+    deer, dog, frog, horse, ship, truck); 50,000 train / 10,000 test. Downloaded and cached
+    by torchvision on first use; do not call get_dataset for this one. W3D5 uses it to put
+    nn.Linear networks against an nn.Conv2d network on data where the arrangement of the
+    pixels matters.
+  description_ar: >
+    صور ملوّنة بحجم ٣٢×٣٢ في عشر فئات متوازنة (طائرة، سيارة، طائر، قطة، غزال، كلب، ضفدع،
+    حصان، سفينة، شاحنة)، منها ٥٠٬٠٠٠ للتدريب و١٠٬٠٠٠ للاختبار. يُنزّلها torchvision ويخزّنها عند
+    أول استخدام، ولا تُستدعى عبر get_dataset. يستخدمها الأسبوع ٣ اليوم ٥ لمقارنة شبكات
+    nn.Linear بشبكة nn.Conv2d على بيانات يهمّ فيها ترتيب البكسلات.
+  gotcha_en: "About 3% of the test images have a near-duplicate in the training set (Barz & Denzler, 2020), and at 32x32 some cats and dogs are ambiguous even to a person. The first run downloads ~170 MB — warn the room."
+  gotcha_ar: "نحو ٣٪ من صور الاختبار لها نسخة شبه مطابقة في مجموعة التدريب (Barz وDenzler، ٢٠٢٠)، وبحجم ٣٢×٣٢ يلتبس بعض القطط والكلاب حتى على الإنسان. والتشغيل الأول يُنزّل نحو ١٧٠ ميغابايت — نبّه القاعة."
 
 fashion_mnist:
   loader: torchvision
