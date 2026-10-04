@@ -45,7 +45,7 @@ away — and the week you learn to stand on someone else's trained model instead
 
 | Day | Theory | Lab |
 |---|---|---|
-| **D1** | Why a flattened image loses information · convolution by hand · stride · padding · output size by counting, then as a formula | **Convolution by hand** — implement it in NumPy, match the slide, then run it on a real photo and watch edges appear |
+| **D1** | Why a flattened image loses information · convolution by hand · stride · padding · output size by counting, then as a formula | **Pooling & augmentation** — pooling shapes, batch norm by hand, dropout and `train()`/`eval()` in detail; then the same CNN with and without augmentation, and the gap measured |
 | **D2** | Pooling · channels · assembling a CNN · parameter counts · ReLU vs sigmoid in depth · the architecture lineage to ConvNeXt (~30 min) | **CNN on MNIST** — build it, train it, hit the target. Stretch: visualise the filters |
 | **D3** | What a detector outputs · **IoU by hand** · non-max suppression · YOLO's one-pass idea · segmentation conceptually | **Detection with YOLO** — run it, sweep the threshold, and score it against ground truth |
 | **D4** | The small-dataset problem · augmentation as free data · which augmentations are valid for which task | **Augmentation A/B** — same model, with and without; measure the gap |
@@ -60,7 +60,7 @@ away — and the week you learn to stand on someone else's trained model instead
 
 | اليوم | النظري | المعمل |
 |---|---|---|
-| **١** | لماذا تفقد الصورة المُسطّحة معلوماتها · الالتفاف يدويًا · الخطوة · الحاشية · حجم الخرج بالعدّ ثم بالمعادلة | **الالتفاف يدويًا** — نفّذه بـ NumPy وطابِق الشريحة ثم شغّله على صورة حقيقية |
+| **١** | لماذا تفقد الصورة المُسطّحة معلوماتها · الالتفاف يدويًا · الخطوة · الحاشية · حجم الخرج بالعدّ ثم بالمعادلة | **التجميع والتكثير** — أشكال التجميع، وتطبيع الدفعات باليد، والإسقاط العشوائي و`train()`/`eval()` بالتفصيل؛ ثم الشبكة نفسها بتكثير وبدونه، وقياس الفجوة |
 | **٢** | التجميع · القنوات · تركيب الشبكة · عدد المعاملات · سلسلة المعماريات حتى ConvNeXt | **شبكة التفافية على MNIST** — ابنِها ودرّبها وحقّق الهدف |
 | **٣** | ما يُخرجه الكاشف · **تداخل الصناديق يدويًا** · كبت غير الأقصى · فكرة YOLO · التقطيع مفاهيميًا | **الكشف بـ YOLO** — شغّله واكتسح العتبة وقيّمه مقابل المرجع |
 | **٤** | مشكلة البيانات القليلة · زيادة البيانات · أي تحويل يصلح لأي مهمة | **مقارنة زيادة البيانات** — النموذج نفسه بها وبدونها |
