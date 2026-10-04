@@ -9,6 +9,7 @@ from __future__ import annotations
 import importlib.util
 import os
 import random
+import shutil
 import subprocess
 import sys
 
@@ -52,7 +53,17 @@ def ensure(*packages: str, quiet: bool = True) -> None:
         return
 
     print(f"📦 Installing: {', '.join(missing)}")
-    cmd = [sys.executable, "-m", "pip", "install", *(["-q"] if quiet else []), *missing]
+    if importlib.util.find_spec("pip") is not None:
+        cmd = [sys.executable, "-m", "pip", "install", *(["-q"] if quiet else []), *missing]
+    elif shutil.which("uv"):
+        # A venv made by `uv venv` has no pip. Install into this interpreter with uv instead.
+        cmd = ["uv", "pip", "install", "--python", sys.executable,
+               *(["-q"] if quiet else []), *missing]
+    else:
+        raise RuntimeError(
+            f"cannot install {', '.join(missing)}: this Python has no pip and uv is not on PATH. "
+            f"From the repo root run:  uv pip install {' '.join(missing)}"
+        )
     subprocess.check_call(cmd)
 
 

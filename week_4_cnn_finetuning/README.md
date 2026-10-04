@@ -46,7 +46,7 @@ away — and the week you learn to stand on someone else's trained model instead
 | Day | Theory | Lab |
 |---|---|---|
 | **D1** | Why a flattened image loses information · convolution by hand · stride · padding · output size by counting, then as a formula | **Pooling & augmentation** — pooling shapes, batch norm by hand, dropout and `train()`/`eval()` in detail; then the same CNN with and without augmentation, and the gap measured |
-| **D2** | Pooling · channels · assembling a CNN · parameter counts · ReLU vs sigmoid in depth · the architecture lineage to ConvNeXt (~30 min) | **CNN on MNIST** — build it, train it, hit the target. Stretch: visualise the filters |
+| **D2** | Pooling · channels · assembling a CNN · parameter counts · ReLU vs sigmoid in depth · the architecture lineage to ConvNeXt (~30 min) | **Fine-tuning ResNet-18 on flowers** — Kaggle download, your own `Dataset` class, a frozen backbone and a new head |
 | **D3** | What a detector outputs · **IoU by hand** · non-max suppression · YOLO's one-pass idea · segmentation conceptually | **Detection with YOLO** — run it, sweep the threshold, and score it against ground truth |
 | **D4** | The small-dataset problem · augmentation as free data · which augmentations are valid for which task | **Augmentation A/B** — same model, with and without; measure the gap |
 | **D5** | Transfer learning · pretrained `torchvision` models · freeze/unfreeze · LR scheduling · why fine-tuning uses a small LR | **Fine-tuning ResNet-18** — 400 images, 5 classes; fine-tune vs scratch, both curves on one figure |
@@ -61,7 +61,7 @@ away — and the week you learn to stand on someone else's trained model instead
 | اليوم | النظري | المعمل |
 |---|---|---|
 | **١** | لماذا تفقد الصورة المُسطّحة معلوماتها · الالتفاف يدويًا · الخطوة · الحاشية · حجم الخرج بالعدّ ثم بالمعادلة | **التجميع والتكثير** — أشكال التجميع، وتطبيع الدفعات باليد، والإسقاط العشوائي و`train()`/`eval()` بالتفصيل؛ ثم الشبكة نفسها بتكثير وبدونه، وقياس الفجوة |
-| **٢** | التجميع · القنوات · تركيب الشبكة · عدد المعاملات · سلسلة المعماريات حتى ConvNeXt | **شبكة التفافية على MNIST** — ابنِها ودرّبها وحقّق الهدف |
+| **٢** | التجميع · القنوات · تركيب الشبكة · عدد المعاملات · سلسلة المعماريات حتى ConvNeXt | **ضبط ResNet-18 على الأزهار** — تنزيل من Kaggle، وصنف `Dataset` من كتابتك، وعمود فقري مُجمَّد ورأس جديد |
 | **٣** | ما يُخرجه الكاشف · **تداخل الصناديق يدويًا** · كبت غير الأقصى · فكرة YOLO · التقطيع مفاهيميًا | **الكشف بـ YOLO** — شغّله واكتسح العتبة وقيّمه مقابل المرجع |
 | **٤** | مشكلة البيانات القليلة · زيادة البيانات · أي تحويل يصلح لأي مهمة | **مقارنة زيادة البيانات** — النموذج نفسه بها وبدونها |
 | **٥** | التعلّم بالنقل · النماذج المُدرَّبة مسبقًا · التجميد وفكّه · جدولة معدّل التعلّم | **ضبط ResNet-18** — ٤٠٠ صورة وخمس فئات: الضبط مقابل التدريب من الصفر |
