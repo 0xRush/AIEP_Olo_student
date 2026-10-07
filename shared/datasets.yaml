@@ -190,7 +190,7 @@ mnist:
   source: "http://yann.lecun.com/exdb/mnist/"
   rows: 70000
   target: digit
-  used_by: ["W4D2"]
+  used_by: ["W4D5"]
   description_en: >
     28x28 greyscale handwritten digits. Downloaded and cached by torchvision on first
     use; do not call get_dataset for this one.
@@ -289,7 +289,7 @@ small_image_5class:
   source: "COCO train2017 CC-BY subset, cropped to one subject per image: bus, cat, dog, pizza, zebra"
   rows: 400
   target: class
-  used_by: ["W4D4", "W4D5", "W6D1", "W6D2", "W6D3", "W6D4", "W6D5"]
+  used_by: ["W4D4", "W6D1", "W6D2", "W6D3", "W6D4", "W6D5"]
   description_en: >
     Five classes — bus, cat, dog, pizza, zebra — 80 images each at 224x224 in
     `ImageFolder` layout, so class 3 is `pizza`. Small on purpose. It carries W4D4-D5 (augmentation,
@@ -345,7 +345,7 @@ unseen_images:
   source: "Held out from the same COCO CC-BY pool as small_image_5class; labels.csv marks the three out-of-class images"
   rows: 25
   target: class
-  used_by: ["W4D5", "W6D4", "W8D1"]
+  used_by: ["W6D4", "W8D1"]
   description_en: >
     Twenty-five images the model has never seen, in the same five classes. Used as the
     honest final check in W6D1 and W6D4, and as what the saved artifact loads and
