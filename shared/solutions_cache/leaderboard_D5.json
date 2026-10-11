@@ -1,0 +1,15 @@
+[
+  {
+    "day": "D5",
+    "model": "Qwen2.5-0.5B-Instruct, zero-shot",
+    "n_train": 0,
+    "accuracy": 0.925,
+    "f1": 0.9239,
+    "fit_s": 0.0,
+    "ms_per_1000": 366039.7,
+    "size_mb": 1976.1,
+    "negation_ok": true,
+    "order_gap": 0.0002,
+    "n_test": 200
+  }
+]

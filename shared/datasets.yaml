@@ -370,7 +370,7 @@ reviews_sentiment:
   source: "fancyzhx/amazon_polarity (English) + Ruqiya/Arabic_Reviews_of_SHEIN (Arabic), sampled and balanced"
   rows: 12000
   target: sentiment
-  used_by: ["W5D1", "W5D2", "W5D4", "W5D5"]
+  used_by: ["W5D1", "W5D2", "W5D3", "W5D4", "W5D5"]
   description_en: >
     Product reviews with a sentiment label. Used for the TF-IDF baseline (W5D1), the
     embedding comparison (W5D2) and the BERT fine-tune (W5D5), so every approach is
@@ -391,7 +391,7 @@ sentence_embeddings_sample:
   source: "hermitdave/FrequencyWords token list, embedded with sentence-transformers all-MiniLM-L6-v2 for this course"
   rows: 50000
   target: null
-  used_by: ["W5D2"]
+  used_by: []                # no lab since the W5 rewrite: W5D1 embeds with all-MiniLM-L6-v2 directly
   description_en: >
     Precomputed 384-dimensional sentence-transformer embeddings over a 50,000-token
     vocabulary, so the W5D2 similarity and nearest-neighbour work loads in seconds on
@@ -418,7 +418,7 @@ policy_docs:
   source: "Written for this course"
   rows: 24
   target: null
-  used_by: ["W7D1", "W7D2", "W7D3", "W7D4", "W7D5"]
+  used_by: ["W5D5", "W7D1", "W7D2", "W7D3", "W7D4", "W7D5"]
   description_en: >
     Twenty-four short policy documents for a fictional company. Nothing in them exists in
     any model's training data, so an ungrounded LLM must hallucinate — which is how W7D3

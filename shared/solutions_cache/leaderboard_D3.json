@@ -1,0 +1,14 @@
+[
+  {
+    "day": "D3",
+    "model": "TCN (trained from scratch)",
+    "n_train": 9600,
+    "accuracy": 0.7962,
+    "f1": 0.7936,
+    "fit_s": 59.4,
+    "ms_per_1000": 217.3,
+    "size_mb": 5.52,
+    "negation_ok": true,
+    "order_gap": 0.2013
+  }
+]
