@@ -1,0 +1,14 @@
+[
+  {
+    "day": "D4",
+    "model": "transformer (trained from scratch)",
+    "n_train": 9600,
+    "accuracy": 0.7771,
+    "f1": 0.7571,
+    "fit_s": 37.8,
+    "ms_per_1000": 627.7,
+    "size_mb": 5.52,
+    "negation_ok": true,
+    "order_gap": 0.0647
+  }
+]

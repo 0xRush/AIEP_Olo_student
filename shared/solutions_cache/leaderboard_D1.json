@@ -1,0 +1,26 @@
+[
+  {
+    "day": "D1",
+    "model": "TF-IDF + logistic regression",
+    "n_train": 9600,
+    "accuracy": 0.83,
+    "f1": 0.8286,
+    "fit_s": 0.31,
+    "ms_per_1000": 23.6,
+    "size_mb": 0.37,
+    "negation_ok": true,
+    "order_gap": 0.0
+  },
+  {
+    "day": "D1",
+    "model": "MiniLM embeddings + logistic regression",
+    "n_train": 4000,
+    "accuracy": 0.7971,
+    "f1": 0.7953,
+    "fit_s": 0.02,
+    "ms_per_1000": 7259.4,
+    "size_mb": 90.0,
+    "negation_ok": true,
+    "order_gap": 0.0027
+  }
+]

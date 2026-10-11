@@ -1,0 +1,14 @@
+[
+  {
+    "day": "D2",
+    "model": "GRU (trained from scratch)",
+    "n_train": 9600,
+    "accuracy": 0.8112,
+    "f1": 0.8076,
+    "fit_s": 20.1,
+    "ms_per_1000": 34.4,
+    "size_mb": 5.22,
+    "negation_ok": true,
+    "order_gap": 0.005
+  }
+]
