@@ -8,8 +8,5 @@
   "LSTM @ 25 (seed 0)": 1.0,
   "LSTM @ 100 (seed 0)": 1.0,
   "LSTM @ 100 (seed 1)": 1.0,
-  "TCN rf 61 @ 100 (seed 0)": 0.24400000274181366,
-  "TCN rf 125 @ 100 (seed 0)": 0.24400000274181366,
-  "TCN rf 253 @ 100 (seed 0)": 1.0,
   "transformer @ 100 (seed 0)": 1.0
 }
