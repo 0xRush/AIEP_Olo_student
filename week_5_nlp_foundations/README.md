@@ -21,8 +21,8 @@ on your own laptop — and every step on the way is a mechanism you have compute
 - Compute an RNN step by hand, measure why its memory fades, and train a GRU with padding handled
   correctly.
 - Build a causal, dilated convolutional network for sequences and compute exactly how far back it sees.
-- Compute attention by hand on three short vectors, then assemble a transformer block and check every
-  shape as it passes through.
+- Compute attention by hand on three short vectors, then use the same transformer block twice: as an
+  encoder that classifies text, and as a decoder that learns to write it.
 - Run a small LLM on your own laptop: read its next-token probabilities, write the sampling that turns
   them into text, and use it to classify text with no training at all.
 - Compare six kinds of model on the same data — accuracy **and** cost — and defend the one you would ship.
@@ -34,7 +34,7 @@ on your own laptop — and every step on the way is a mechanism you have compute
 - أن تُحوّل نصًا خامًا إلى أرقام بـTF-IDF وبالتضمينات، وتقيس التشابه بجيب التمام، وتقول متى يتفوّق كل تمثيل.
 - أن تحسب خطوة RNN يدويًا، وتقيس لماذا تبهت ذاكرتها، وتُدرّب GRU مع معالجة الحشو صحيحًا.
 - أن تبني شبكة التفافية سببية متّسعة للمتتاليات وتحسب بالضبط إلى أيّ مدى ترى إلى الوراء.
-- أن تحسب الانتباه يدويًا على ثلاثة متّجهات قصيرة، ثم تُركّب كتلة محوّل وتتحقّق من كل شكل يمرّ فيها.
+- أن تحسب الانتباه يدويًا على ثلاثة متّجهات قصيرة، ثم تستعمل كتلة المحوّل نفسها مرّتين: مُرمِّزًا يُصنّف النص، ومُفكِّكًا يتعلّم كتابته.
 - أن تُشغّل نموذج لغة كبيرًا صغيرًا على حاسوبك: تقرأ احتمالات رمزه التالي، وتكتب أخذ العيّنات الذي يحوّلها إلى
   نص، وتستعمله لتصنيف النص دون أي تدريب.
 - أن تقارن ستة أنواع من النماذج على البيانات نفسها — الدقّة **والكلفة** — وتدافع عن الذي كنت لتنشره.
@@ -50,7 +50,7 @@ on your own laptop — and every step on the way is a mechanism you have compute
 | **D1** | The NLP pipeline · TF-IDF · embeddings and cosine similarity · what Arabic breaks | **From text to vectors** — TF-IDF and sentence embeddings on the week's split; the leaderboard starts |
 | **D2** | RNNs · vanishing gradients through time · LSTM and GRU gates · padding | **RNNs, LSTMs and GRUs** — one step by hand, the gradient measured, a GRU on the reviews |
 | **D3** | Temporal convolutional networks · causal and dilated convolution · the receptive field | **TCNs** — compute a receptive field, prove a block is causal, a TCN on the reviews |
-| **D4** | Attention · positional encoding · multi-head self-attention · the transformer block · the causal mask | **Attention and the transformer block** — by hand, then assembled, then a memory task the RNN could not reliably pass |
+| **D4** | Attention · positional encoding · multi-head self-attention · the transformer block · the causal mask | **Attention and the transformer** — by hand, then a PyTorch encoder that classifies the reviews and a decoder-only model that learns to write them |
 | **D5** | LLMs · next-token pretraining · chat templates · sampling · prompting · hallucination | **Working with an LLM** — a 0.5 B model on CPU, zero-shot on the week's data, and the verdict |
 
 Every lab adds a row to **one leaderboard** on **one train/test split**, so by Friday six generations of
@@ -71,7 +71,7 @@ M1** (data + baseline) is due on D4.
 | **١** | خط معالجة اللغة · TF-IDF · التضمينات وجيب التمام · ما تكسره العربية | **من النص إلى المتّجهات** — TF-IDF وتضمينات الجمل على تقسيم الأسبوع؛ وتبدأ اللوحة |
 | **٢** | الشبكات المتكرّرة · تلاشي التدرّج عبر الزمن · بوّابات LSTM وGRU · الحشو | **RNN وLSTM وGRU** — خطوة يدويًا، والتدرّج مقيسًا، وGRU على المراجعات |
 | **٣** | الشبكات الالتفافية الزمنية · الالتفاف السببي والمتّسع · مجال الاستقبال | **TCN** — احسب مجال استقبال، وبرهن أن الكتلة سببية، وTCN على المراجعات |
-| **٤** | الانتباه · ترميز الموضع · الانتباه الذاتي متعدّد الرؤوس · كتلة المحوّل · القناع السببي | **الانتباه وكتلة المحوّل** — يدويًا، ثم مُركَّبًا، ثم مهمة ذاكرة لم تجتزها RNN باطّراد |
+| **٤** | الانتباه · ترميز الموضع · الانتباه الذاتي متعدّد الرؤوس · كتلة المحوّل · القناع السببي | **الانتباه والمحوّل** — يدويًا، ثم مُرمِّز من PyTorch يُصنّف المراجعات، ونموذج مُفكِّك فقط يتعلّم كتابتها |
 | **٥** | نماذج اللغة الكبيرة · التدريب المسبق على الرمز التالي · قوالب المحادثة · أخذ العيّنات · الموجِّهات · الهلوسة | **العمل مع نموذج لغة كبير** — نموذج بنصف مليار معامل على المعالج، دون أمثلة على بيانات الأسبوع، والحكم |
 
 كل معمل يضيف صفًا إلى **لوحة نتائج واحدة** على **تقسيم واحد** للتدريب والاختبار، فتُقارَن يوم الجمعة ستة أجيال
