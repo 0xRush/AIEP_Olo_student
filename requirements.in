@@ -73,6 +73,9 @@ rank-bm25>=0.2                # W7D4 hybrid-retrieval comparison
 # payment method. See docs/Data_Guide.md for key setup.
 openai>=1.40
 
+# --- Agentic AI (week 6 day 3) -----------------------------------------------
+langgraph>=0.2                # W6D3 ReAct agent + multi-agent supervisor
+
 # --- Serving (week 8 day 1) --------------------------------------------------
 fastapi>=0.112
 uvicorn>=0.30
