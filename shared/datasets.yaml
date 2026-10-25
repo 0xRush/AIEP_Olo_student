@@ -231,7 +231,7 @@ sample_photos:
   source: "Cut from the Attribution-licensed subset of COCO train2017; ATTRIBUTION.csv in the zip credits every photograph"
   rows: 20
   target: null
-  used_by: ["W4D1", "W4D3", "W6D1"]
+  used_by: ["W4D1", "W4D3", "W7D1"]
   description_en: >
     Twenty photographs at 640px on the longest side, used three times: hand-written
     convolution (W4D1), the object detection lab (W4D3), and ViT attention maps (W6D1).
@@ -289,7 +289,7 @@ small_image_5class:
   source: "COCO train2017 CC-BY subset, cropped to one subject per image: bus, cat, dog, pizza, zebra"
   rows: 400
   target: class
-  used_by: ["W4D4", "W6D1", "W6D2", "W6D3", "W6D4", "W6D5"]
+  used_by: ["W4D4", "W7D1", "W7D2"]
   description_en: >
     Five classes — bus, cat, dog, pizza, zebra — 80 images each at 224x224 in
     `ImageFolder` layout, so class 3 is `pizza`. Small on purpose. It carries W4D4-D5 (augmentation,
@@ -319,7 +319,7 @@ image_captions_small:
     captions_train2017 sentences; no image id in common with the week 4 sets"
   rows: 200
   target: null
-  used_by: ["W6D5"]
+  used_by: ["W7D2"]
   description_en: >
     Two hundred image-caption pairs for the CLIP cross-modal retrieval lab. Each image
     has exactly one known-correct caption, which is what makes Recall@1, Recall@5 and MRR
@@ -345,7 +345,7 @@ unseen_images:
   source: "Held out from the same COCO CC-BY pool as small_image_5class; labels.csv marks the three out-of-class images"
   rows: 25
   target: class
-  used_by: ["W6D4", "W8D1"]
+  used_by: ["W8D1"]               # W6D4 (linear probe) is archived; W7D1 probes on W4D5's split instead
   description_en: >
     Twenty-five images the model has never seen, in the same five classes. Used as the
     honest final check in W6D1 and W6D4, and as what the saved artifact loads and
@@ -356,6 +356,36 @@ unseen_images:
     الأول — أي المتطلّب الرابع لمشروع التخرّج مصغَّرًا.
   gotcha_en: "Three images are elephants — a class no lab trains on; labels.csv marks them in_or_out=out. A good service says 'low confidence', not a wrong label."
   gotcha_ar: "ثلاث صور من فئات لم يُدرَّب عليها النموذج. والخدمة الجيّدة تقول «ثقة منخفضة» ولا تعطي تسمية خاطئة."
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Week 7 — speech
+# ═══════════════════════════════════════════════════════════════════════════════
+
+speech_clips_small:
+  file: speech_clips_small.zip
+  url: https://github.com/0xRush/AIEP_Olo_student/releases/download/data-v1/speech_clips_small.zip
+  sha256: "4d080314ce6bbdd4af56fe4c17fb697564ad3494a3157cf60f22d081e80f90df"
+  size_mb: 10.52
+  licence: "CC BY 4.0 (LibriSpeech, FLEURS); the CMU Arctic x-vectors from Matthijs/cmu-arctic-xvectors"
+  source: "LibriSpeech test-clean (openslr/librispeech_asr) and FLEURS ar_eg validation (google/fleurs),
+    both via their Hugging Face parquet copies; built by build_speech_clips_small in tools/make_datasets.py"
+  rows: 52
+  target: text
+  used_by: ["W7D3", "W7D4"]
+  description_en: >
+    Fifty-two 16 kHz speech clips with their reference transcripts: thirty English clips,
+    one per LibriSpeech speaker, and twenty Arabic clips from FLEURS. Also one
+    minute-long English clip for the 30-second-window task, the first English clip
+    resampled to 44.1 kHz for the sample-rate task, and four speaker x-vectors so the
+    text-to-speech lab can change SpeechT5's voice without a second download.
+  description_ar: >
+    اثنان وخمسون مقطعًا صوتيًا بتردّد ١٦ كيلوهرتز مع نصوصها المرجعية: ثلاثون مقطعًا
+    إنجليزيًا، مقطع لكل متحدّث من LibriSpeech، وعشرون مقطعًا عربيًا من FLEURS. ومعها
+    مقطع إنجليزي طوله دقيقة لمهمة نافذة الثلاثين ثانية، والمقطع الإنجليزي الأول مُعاد
+    التشكيل إلى ٤٤٫١ كيلوهرتز لمهمة معدّل العيّنات، وأربعة متّجهات متحدّثين (x-vectors)
+    كي يغيّر معمل تحويل النص إلى كلام صوتَ SpeechT5 دون تنزيل ثانٍ.
+  gotcha_en: "The Arabic references are FLEURS' raw transcriptions, with hamza and taa marbuta spelled as the reader's script had them. Whisper often spells them differently, so part of the Arabic WER is spelling, not hearing — normalise both sides before you blame the model."
+  gotcha_ar: "النصوص العربية المرجعية هي النسخ الخام من FLEURS، بالهمزة والتاء المربوطة كما كُتبت في النص المقروء. وكثيرًا ما يكتبها Whisper بطريقة أخرى، فجزء من معدّل الخطأ في العربية إملاءٌ لا سمع — وحّد كتابة الطرفين قبل أن تلوم النموذج."
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Weeks 5-7 — NLP, RAG, recommenders
@@ -418,7 +448,7 @@ policy_docs:
   source: "Written for this course"
   rows: 24
   target: null
-  used_by: ["W5D5", "W7D1", "W7D2", "W7D3", "W7D4", "W7D5"]
+  used_by: ["W5D5"]               # the W7 RAG labs are archived (_archive/week_7_retrieval_rag_recsys)
   description_en: >
     Twenty-four short policy documents for a fictional company. Nothing in them exists in
     any model's training data, so an ungrounded LLM must hallucinate — which is how W7D3
@@ -441,7 +471,7 @@ rag_eval_questions:
   source: "Written for this course"
   rows: 40
   target: null
-  used_by: ["W7D1", "W7D3", "W7D4"]
+  used_by: []                     # the W7 RAG labs are archived (_archive/week_7_retrieval_rag_recsys)
   description_en: >
     Forty evaluation questions over policy_docs, each with the ground-truth answer and
     the source document. Thirty are answerable; ten are deliberately out of scope, so
@@ -461,7 +491,7 @@ movies_ratings:
   source: "https://grouplens.org/datasets/movielens/ (ml-latest-small), fetched from a Hugging Face mirror because GroupLens' own host serves an expired TLS certificate; each CSV's sha256 is pinned in tools/make_datasets.py"
   rows: 100836
   target: rating
-  used_by: ["W7D5"]
+  used_by: []                     # the W7 recommender lab is archived (_archive/week_7_retrieval_rag_recsys)
   description_en: >
     User-movie ratings plus title and genre metadata, so both collaborative and
     content-based filtering can be built on the same data and compared directly.

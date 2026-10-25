@@ -59,7 +59,10 @@ timm>=1.0                     # ViT / ConvNeXt / DINOv2 backbones, W4D2 and W6
 transformers>=4.44            # W5 BERT, W4D3 YOLOS, W6 ViT/ViTMAE/DINOv2/CLIP
 tokenizers>=0.19
 datasets>=2.20
-sentence-transformers>=3.0    # W5D2 embeddings, W7 retrieval
+sentence-transformers>=3.0    # W5D1 embeddings, W6D2 RAG
+sentencepiece>=0.2            # W7D4 SpeechT5 tokenizer
+soundfile>=0.12               # W7D3-D4 reading and writing WAV
+jiwer>=3.0                    # W7D3 checks the hand-written word error rate
 nltk>=3.8                     # W5D1 tokenisation / stopwords / lemmatisation
 accelerate>=0.33              # transformers trainer backend
 
